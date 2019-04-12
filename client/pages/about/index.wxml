@@ -1,0 +1,51 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text>about us
+    </navigator>
+  </view>
+</view>
+
+<view class='padding-xl text-center text-grey'>
+    <image src='https://sustcs-cdn.makergyt.com/sust-logo.jpg' class='response round' mode='widthFix' style='width:100rpx;margin-top:100rpx'></image>
+    <view class='text-df margin-top-xl'>SUSTCS
+    <text class='text-df'>v1.0</text>
+    </view>
+    <view class='margin-top-sm'>
+    <text>©2019 All rights reserved.</text>
+    </view>
+</view>
+
+
+<view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+  <view class="cu-item arrow">
+    <navigator class='content' url='./product' hover-class='none'>
+      <text class='icon-github text-grey'></text>
+      <text class='text-grey'>Product introduction</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' url='./me' hover-class='none'>
+      <text class='icon-formfill text-green'></text>
+      <text class='text-grey'>About developer</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' url='./changeLog' hover-class='none'>
+      <text class='icon-writefill text-green'></text>
+      <text class='text-grey'>Version changes</text>
+    </navigator>
+  </view>
+  <view class="cu-item arrow">
+    <view class='content' bindtap="showQrcode">
+      <text class='icon-appreciatefill text-cyan'></text>
+      <text class='text-grey'>Sponsored cooperation</text>
+    </view>
+  </view>
+  <view class="cu-item arrow">
+    <navigator class='content' url='./openSource' hover-class='none'>
+      <text class='icon-creativefill text-orange'></text>
+      <text class='text-grey'>Open credit</text>
+    </navigator>
+  </view>
+</view>

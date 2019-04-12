@@ -1,0 +1,9 @@
+<template name="navigate">
+    <view class="cu-custom" style="height:{{CustomBar}}px;">
+        <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+            <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+                <text class='icon-back'>{{title}}</text>
+            </navigator>
+        </view>
+    </view>
+</template>

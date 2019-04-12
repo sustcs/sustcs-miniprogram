@@ -1,0 +1,23 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'>course</text>
+    </navigator>
+  </view>
+</view>
+<!-- course list -->
+<view wx:for="{{courseList}}" wx:for-item="grade" wx:key>
+  <view class="cu-bar bg-white solid-bottom ">
+    <view class='action'>
+      <text class='icon-titles text-orange '></text> {{grade.grade}}
+    </view>
+  </view>
+  <view class="menu card-menu cu-list margin-tb-sm" >
+    <navigator class="cu-item arrow" wx:for="{{grade.list}}" wx:for-item="list" wx:key url='{{list.url}}'>
+      <view class='content' >
+        <text class='icon-{{list.icon}} text-grey'></text>
+        <text class='text-grey'>{{list.name}}</text>
+      </view>
+    </navigator>
+  </view>
+</view>

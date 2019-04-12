@@ -1,0 +1,26 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text>open credit 
+    </navigator>
+  </view>
+</view>
+
+
+<view class='padding text-center'>
+  <view class='padding-lr bg-white' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
+    <view class='solid-bottom padding'>
+    Color UI
+    </view>
+    <view class='padding'>https://github.com/weilanwl/ColorUI</view>
+  </view>
+  
+</view>
+<view class='padding text-center'>
+  <view class='padding-lr bg-white' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
+    <view class='solid-bottom padding'>
+    path-view-component
+    </view>
+    <view class='padding'>https://github.com/haishangfeie/path-view-component</view>
+  </view>
+</view>

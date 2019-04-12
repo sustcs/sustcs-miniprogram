@@ -1,0 +1,76 @@
+<import src="../template/navigate.wxml" />
+<template is="navigate" data="{{...pageConfig}}" />
+<view class='padding-sm'>
+    <view class='bg-gradual-green padding radius text-center shadow-blur'>
+        <view class="text-lg">Data structures and algorithms</view>
+
+    </view>
+</view>
+<form bindsubmit="bindFormSubmit">
+    <view class="cu-bar bg-white ">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text> Rate
+        </view>
+    </view>
+    <view class="cu-list menu sm-border">
+        <view class="cu-item">
+            <view class='title'>curriculum</view>
+            <view class="padding-tb-xs"> 
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favor text-orange text-xl'></text>
+            </view>
+        </view>
+        <view class="cu-item">
+            <view class='title'>quality</view>
+            <view class="padding-tb-xs"> 
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favor text-orange text-xl'></text>
+            </view>
+        </view>
+        <view class="cu-item">
+            <view class='title'>complexity</view>
+            <view class="padding-tb-xs"> 
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favorfill text-orange text-xl'></text>
+                <text class='icon-favor text-orange text-xl'></text>
+            </view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white  margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text> Content
+        </view>
+    </view>
+    <view class="grid col-4  bg-white solid-bottom sm-border">
+        <view class='margin-tb-xs text-center' wx:for="{{tagList}}" wx:key>
+            <button class='cu-btn line-{{item.color}} round  shadow'>{{item.name}}</button>
+        </view>
+    </view>
+    <view class="cu-form-group" >
+        <textarea placeholder="Civilized society, rational commentary" maxlength="-1" auto-height placeholder-class='placeholder' name="textarea"></textarea>
+    </view>
+    <view class="cu-form-group margin-top sm-border'">
+        <view class='title'>The class period</view>
+        <picker mode="multiSelector" bindchange="MultiChange" bindcolumnchange="MultiColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <view class="picker">
+            {{multiArray[0][multiIndex[0]]}}，{{multiArray[1][multiIndex[1]]}}
+        </view>
+        </picker>
+    </view>
+    <view class="cu-form-group">
+        <view class='title'>anonymous</view>
+        <switch></switch>
+    </view>
+    <view class="flex padding" >
+      <button class='flex-sub cu-btn bg-grey lg padding-sm margin-xs radius shadow' bindtap="saveDraft">Save a draft</button>
+      <button class='flex-sub cu-btn bg-green lg padding-sm margin-xs radius shadow' form-type="submit">Publish</button>
+    </view>
+</form>

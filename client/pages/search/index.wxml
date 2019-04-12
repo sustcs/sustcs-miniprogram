@@ -1,0 +1,13 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text>
+    </navigator>
+  </view>
+</view>
+<view class="cu-bar bg-white search fixed" style="top:{{CustomBar}}px">
+  <view class='search-form round'>
+    <text class="icon-search"></text>
+    <input type="text" placeholder="Search" confirm-type="search" bindinput='searchIcon'></input>
+  </view>
+</view>

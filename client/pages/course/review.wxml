@@ -1,0 +1,102 @@
+<import src="../template/navigate.wxml" />
+<template is="navigate" data="{{...pageConfig}}" />
+<!-- head -->
+<view class="bannerBox ">
+    <view class='bannerBox-back bg-blue'></view>
+</view>
+<view class="flex padding-sm text-white">    
+    <text>ssome</text>
+</view>
+<!-- head -->
+<!-- enterace -->
+<view class="cu-card ">
+  <view class="bg-white shadow-blur bg cu-item" >
+    <view class='flex'>
+      <view class='flex-sub padding-xs margin-xs radius'>
+        <view class="grid col-1 ">
+          <view class="flex justify-between">    
+            <view class="" >Score</view>
+            <view class='round action'>
+                <text class='icon-info'bindtap="showModal" data-target="Modal"></text>
+            </view>
+          </view>
+        </view>
+        <view class="cu-modal {{modalName=='Modal'?'show':''}}">
+            <view class="cu-dialog">
+                <view class="cu-bar bg-white justify-end">
+                <view class='content'>computational formula</view>
+                <view class='action' bindtap='hideModal'>
+                    <text class='icon-close text-red'></text>
+                </view>
+                </view>
+                <view class='padding-xl'>
+                score = (curriculum + quality)*0.4 + complexity*0.2
+                </view>
+            </view>
+        </view>
+        <view class="padding-lr padding-tb-xs text-center text-xsl text-black" >5.0</view>
+        <!-- rate -->
+        <view class="grid col-1 padding-tb-xs">
+          <text class='icon-favorfill text-orange'></text>
+          <text class='icon-favorfill text-orange'></text>
+          <text class='icon-favorfill text-orange'></text>
+          <text class='icon-favorfill text-orange'></text>
+          <text class='icon-favor text-orange'></text>
+        </view>
+        
+      </view>
+      <view class='flex-twice padding-xs margin-xs radius'>
+        <view>
+            <view class='cu-tag bg-red light sm round'>tip1</view>
+            <view class='cu-tag bg-green light sm round'>tip2</view>
+          </view>
+        <view class="grid col-1 padding-tb-xs">
+          <view class="padding-tb-xs">0 comments</view>
+          <view class="padding-tb-xs" >curriculum: 0.0</view>
+          <view class="padding-tb-xs" >quality: 0.0</view>
+          <view class="flex justify-between">    
+            <view class="padding-tb-xs" >complexity: 0.0</view>
+            <!-- icon button -->
+            <view>
+                <button class='share-btn icon-share' open-type="share" >    
+                </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- enterace -->
+<!-- comments -->
+ <view class="cu-list menu menu-avatar comment solids-top">
+    <view class="cu-item" wx:for="{{comments}}" wx:key>
+      <view class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);"></view>
+      <view class='content'>
+        <view class='flex justify-between'>
+          <view class='text-grey'>{{item.name}}</view>
+          <view >
+            <text class='icon-favorfill text-orange'></text>
+            <text class='icon-favorfill text-orange'></text>
+            <text class='icon-favorfill text-orange'></text>
+            <text class='icon-favorfill text-orange'></text>
+            <text class='icon-favor text-orange'></text>
+          </view>
+        </view>
+        <navigator class='text-gray text-content text-df' url='{{item.url}}' >
+            {{item.commentsShort}}
+        </navigator>
+        <view class='margin-top-sm flex justify-between'>
+          <view class='text-gray text-df'>{{item.completedTime}}</view>
+          <view >
+            <text bindtap="agree" class="icon-appreciate{{!isZan?'fill':''}} text-{{!isZan?'red':'gray'}}"></text>
+          </view>
+        </view>
+      </view>
+    </view>
+</view>
+<view class='floatBtn'>
+  <navigator class="bg-blue padding round" hover-class='none' url='comment' open-type="navigate">
+    <text class='icon-edit text-xl'></text>
+  </navigator>
+</view>

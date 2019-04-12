@@ -1,0 +1,27 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text>changeLog 
+    </navigator>
+  </view>
+</view>
+<view class="cu-bar bg-white ">
+  <view class='action'>
+    <text class='icon-title text-blue'></text>The project follows the Semantic Versioning 2.0.0 Semantic version specification
+  </view>
+</view>
+
+<view class="cu-timeline">
+  <view class="cu-time">03-17</view>
+  <view class='cu-item text-red'>
+    <view class="bg-gradual-green content shadow-blur">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-green">v0.0.1</view>
+        <view class="cu-tag line-white" bindtap='CopyLink' data-link='https://github.com/makergyt'>git url</view>
+      </view>
+      <view class='margin-top-sm text-content'>
+        <view>1.Complete the basic UI architecture</view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,30 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search/index",
+    "pages/menu/all",
+    "pages/teacher/index",
+    "pages/feedback/index",
+    "pages/user/index",
+    "pages/about/index",
+    "pages/about/product",
+    "pages/about/me",
+    "pages/about/changeLog",
+    "pages/about/openSource",
+    "pages/auth/index",
+    "pages/course/index",
+    "pages/course/review",
+    "pages/course/detail",
+    "pages/course/introduce",
+    "pages/course/comment",
+    "pages/source/tree",
+    "pages/source/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "ColorUI",
+    "navigationStyle": "custom",
+    "navigationBarTextStyle": "white"
+  }
+}

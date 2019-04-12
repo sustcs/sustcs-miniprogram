@@ -1,0 +1,7 @@
+.share-btn{
+  border: 0;
+  background-color: white;
+}
+.share-btn::after{
+    border: 0;
+}

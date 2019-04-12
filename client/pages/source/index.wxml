@@ -1,0 +1,2 @@
+<import src="../template/navigate.wxml" />
+<template is="navigate" data="{{...pageConfig}}" />

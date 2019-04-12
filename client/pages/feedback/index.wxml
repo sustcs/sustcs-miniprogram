@@ -1,0 +1,16 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'>feedback</text>
+    </navigator>
+  </view>
+</view>
+<view class="cu-bar bg-white solid-bottom margin-top">
+  <view class='action'>
+    You need to konw as follows: 
+  </view>
+</view>
+<view class='padding bg-white'>
+  <view class='text-left padding'>some text</view>
+</view>
+<button class='cu-btn bg-green shadow-blur round lg text-center' open-type='feedback'>feedback</button>

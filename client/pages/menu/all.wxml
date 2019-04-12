@@ -1,0 +1,20 @@
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-pink" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text> All Function
+    </navigator>
+  </view>
+</view>
+<scroll-view scroll-x class="bg-white nav flex text-center" scroll-with-animation scroll-left="{{scrollLeft}}">
+  <view class="cu-item flex-sub {{index==TabCur?'text-green cur':''}}" wx:for="{{allItem}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+    {{item.name}}
+  </view>
+</scroll-view>
+<view class='grid col-2 padding-sm' >
+  <view class='padding-sm' wx:for="{{allItem[0].func}}" wx:key>
+    <view class='bg-gradual-{{item.color}} padding radius text-center shadow-blur'>
+      <view class="text-lg">{{item.name}}</view>
+      <view class='margin-top-sm text-Abc'>{{item.info}}</view>
+    </view>
+  </view>
+</view>

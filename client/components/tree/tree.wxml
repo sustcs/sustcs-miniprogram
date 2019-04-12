@@ -1,0 +1,16 @@
+<scroll-view scroll-x class="scrollBar" scroll-with-animation scroll-left="0" scroll-into-view="{{toView}}">
+      <view class="item">
+            <text class="text-grey" bindtap="toPath">../</text>
+            <text id="menu{{index}}" class="text-grey" bindtap="toPath" wx:key="{{index}}" data-index="{{index}}" wx:for="{{currentPath}}">
+                  {{item}}
+            </text>
+      </view>
+</scroll-view>
+<view class="container">
+      <view wx:for="{{outValue}}" wx:key="{{index}}" class="item" bindtap="{{item.Method}}" data-text="{{item.Key}}" data-index="{{index}}">
+            <view class='content'>
+                  <my-icon name="{{item.Type}}" class="icon" />
+                  <text class="text-grey">{{item.Key}}</text>
+            </view>
+      </view>
+</view>

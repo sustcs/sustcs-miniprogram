@@ -1,0 +1,51 @@
+<!-- navigator -->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-gradual-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text>Teacher list
+    </navigator>
+  </view>
+</view>
+
+<!-- content -->
+<view class="VerticalBox">
+  <scroll-view class="VerticalNav nav" scroll-y scroll-with-animation scroll-top="{{VerticalNavTop}}" style="height:calc(100vh)">
+    <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{10}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+      Type{{index +1}}
+    </view>
+  </scroll-view>
+  <scroll-view class="VerticalMain" scroll-y scroll-with-animation style="height:calc(100vh)" scroll-into-view="main-id-{{TabCur}}" bindscroll="VerticalMain">
+    <view class="padding-top padding-lr" wx:for="{{10}}" wx:key id="main-id-{{index}}">
+      <view class='cu-bar solid-bottom bg-white'>
+        <view class='action'>
+          <text class='icon-title text-green'></text> Type{{index +1}}</view>
+      </view>
+      <view class="cu-list menu menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
+          <view class='content'>
+            <view class='text-grey'>Teacher name</view>
+            <view class='text-gray text-sm'> professional titles</view>
+          </view>
+          <view class='action'>
+            <view class='text-grey text-xs'>
+                <text class='icon-right'></text>
+            </view>
+          </view>
+        </view>
+        <view class="cu-item">
+          <view class="cu-avatar round lg" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
+          <view class='content'>
+            <view class='text-grey'>Teacher name</view>
+            <view class='text-gray text-sm'> professional titles</view>
+          </view>
+          <view class='action'>
+            <view class='text-grey text-xs'>
+                <text class='icon-right'></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
