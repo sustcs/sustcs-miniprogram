@@ -1,39 +1,99 @@
 //index.js
 //获取应用实例
+var api = require('../../service/api.js');
 const app = getApp();
-const order = ['red', 'yellow', 'blue', 'green', 'red']
+
 Page({
     data: {
         pageConfig: {
-            title: "file system",
+            title: "github",
             StatusBar: app.globalData.StatusBar,
             CustomBar: app.globalData.CustomBar,
         },
-        toView: 'red',
-        scrollTop: 100
-
+        repo: null,
+        readme: null,
+        baseUrl: null,
+        md: null,
     },
 
     onLoad: function () {
+        this.getRepo()
 
     },
-    upload() {
-        // wx.cloud.init()
-        // wx.chooseImage({
-        //     success: chooseResult => {
-        //         // 将图片上传至云存储空间
-        //         wx.cloud.uploadFile({
-        //             // 指定上传到的云路径
-        //             cloudPath: 'my-photo.png',
-        //             // 指定要上传的文件的小程序临时文件路径
-        //             filePath: chooseResult.tempFilePaths[0],
-        //             // 成功回调
-        //             success: res => {
-        //                 console.log('上传成功', res)
-        //             },
+    cloneUrl: function (e) {
+        console.log(e)
+        if (e.currentTarget.dataset.text !== null) {
+            wx.setClipboardData({
+                data: e.currentTarget.dataset.text,
+                success(res) {
+                    if (res.errMsg == "setClipboardData:ok") {
+                        wx.showToast({
+                            title: 'copied',
+                            icon: 'success',
+                            duration: 1000
+                        })
+                    }
+                }
+            })
+        }
+
+    },
+
+    getRepo: function () {
+        //wx.showLoading()
+        let that = this
+        var url = 'https://api.github.com/repos/sustcs/course';
+        console.log(api.get(url));
+        // api.get(url).then((res) => {
+        //     if (res.statusCode === HTTP_STATUS.SUCCESS) {
+        //         let baseUrl = 'https://raw.githubusercontent.com/' + res.data.full_name + '/master/'
+        //         that.setData({
+        //             repo: res.data,
+        //             baseUrl: baseUrl
+        //         }, () => {
+        //             that.getReadme()
+        //             that.checkStarring()
+        //             // that.checkWatching()
         //         })
-        //     },
+        //     } else {
+        //         wx.showToast({
+        //             icon: 'none',
+        //             title: res.data.message
+        //         })
+        //     }
+        //     // wx.stopPullDownRefresh()
+        //     wx.hideLoading()
         // })
 
     },
+    getReadme() {
+        const { repo } = this.state
+        let url = '/repos/' + repo.full_name + '/readme'
+        let that = this
+        api.get(url).then((res) => {
+            that.setState({
+                readme: res.data
+            }, () => {
+                that.parseReadme()
+            })
+        })
+    },
+    parseReadme() {
+        const { readme } = this.state
+        this.setState({
+            md: base64_decode(readme.content)
+        })
+    },
+    checkStarring() {
+        if (hasLogin()) {
+            const { repo } = this.state
+            let that = this
+            let url = '/user/starred/' + repo.full_name
+            api.get(url).then((res) => {
+                that.setState({
+                    hasStar: res.statusCode === 204
+                })
+            })
+        }
+    }
 });

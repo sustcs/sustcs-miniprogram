@@ -11,14 +11,18 @@
     "pages/about/me",
     "pages/about/changeLog",
     "pages/about/openSource",
-    "pages/auth/index",
+    "pages/login/index",
+    "pages/login/github",
     "pages/course/index",
     "pages/course/review",
     "pages/course/detail",
     "pages/course/introduce",
     "pages/course/comment",
     "pages/source/tree",
-    "pages/source/index"
+    "pages/source/index",
+    "pages/source/content",
+    "pages/source/preview",
+    "pages/agreement/license"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -5,16 +5,16 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"es6": false,
+		"es6": true,
 		"postcss": false,
 		"minified": false,
 		"newFeature": true,
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.4.2",
+	"libVersion": "2.5.0",
 	"appid": "wx56ff4f457b23ebd1",
-	"projectname": "template",
+	"projectname": "sustcs",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
@@ -39,26 +39,26 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 5,
+			"current": 8,
 			"list": [
 				{
 					"id": 0,
-					"name": "all",
+					"name": "course/review",
 					"pathName": "pages/course/review",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 1,
-					"name": "all",
-					"pathName": "pages/source/index",
+					"name": "about/me",
+					"pathName": "pages/about/me",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": 2,
-					"name": "all",
-					"pathName": "pages/source/index",
+					"name": "about",
+					"pathName": "pages/about/index",
 					"query": "",
 					"scene": null
 				},
@@ -80,6 +80,27 @@
 					"id": 5,
 					"name": "source/tree",
 					"pathName": "pages/source/tree",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "agreement/license",
+					"pathName": "pages/agreement/license",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "source/content",
+					"pathName": "pages/source/content",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "source/preview",
+					"pathName": "pages/source/preview",
 					"query": "",
 					"scene": null
 				}

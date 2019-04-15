@@ -103,33 +103,29 @@ Component({
             var currentText = e.currentTarget.dataset.text;
             var pathstr = this.data.currentPath.toString();
             pathstr = pathstr.replace(/\,/g, "") + currentText;
+            var that = this;
             this.cos.getObjectUrl({
                 Bucket: config.Bucket,
                 Region: config.Region,
                 Key: pathstr,
             }, function (err, data) {
 
-                //判断文件类型
-                wx.downloadFile({
-                    url: data.Url,
-                    success(res) {
-                        const filePath = res.tempFilePath
-                        wx.openDocument({
-                            filePath,
-                            success(res) {
-                                console.log('open document success')
-                            }
-                        })
-                    }
-                })
-
-
-                // 
-
+                if (err && err.error) {
+                    wx.showModal({
+                        title: 'return error',
+                        content: (err.error.Message || err.error) + ';statusCode:' + err.statusCode,
+                        showCancel: false
+                    });
+                } else if (err) {
+                    wx.showModal({
+                        title: 'request error',
+                        content: err + ';statusCode:' + err.statusCode,
+                        showCancel: false
+                    });
+                } else if (data.Url !== null) {
+                    that.triggerEvent('fileInfo', data.Url)
+                }
             });
-
-
-
         },
 
         toPath(e) {

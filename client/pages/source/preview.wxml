@@ -1,0 +1,8 @@
+<import src="../template/navigate.wxml" />
+<template is="navigate" data="{{...pageConfig}}" />
+<view class="cu-card no-card article">
+    <view class="cu-item shadow">
+        <view class="title">README.md</view>
+        <view class="content">sds</view>
+    </view>
+</view>

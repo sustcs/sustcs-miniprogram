@@ -1,1 +1,12 @@
 /* pages/source/index.wxss */
+.bannerBox {
+    width: 100%;
+    height: 0rpx;
+}
+
+.bannerBox .bannerBox-back {
+    height: 200rpx;
+}
+.header{
+    height:100rpx;
+}

@@ -1,5 +1,5 @@
 module.exports = {
-    serverPrefix: 'http://makergyt.test/',
+    serverPrefix: 'https://test.makergyt.com/',
     Bucket: 'wechat-1256701454',
     Region: 'ap-chengdu',
 

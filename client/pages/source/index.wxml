@@ -1,2 +1,98 @@
 <import src="../template/navigate.wxml" />
 <template is="navigate" data="{{...pageConfig}}" />
+<!-- head -->
+<view class="bannerBox ">
+    <view class='bannerBox-back bg-blue'></view>
+</view>
+<view class="header">
+    <view class="padding-top text-white text-center">
+        <text class="text-xl">{{repo.name}}</text>
+    </view>
+    <view class="padding-top-xs text-white text-center">
+        <text>{{repo.description}}</text>
+    </view>
+</view>
+<!-- end head -->
+<!-- enterace -->
+<view class="cu-card dynamic">
+    <view class="bg-white shadow-blur bg cu-item">
+        <view class='padding flex text-center text-grey bg-white shadow-warp'>
+            <view class='flex flex-sub flex-direction solid-right'>
+                <view class="text-xxl text-orange">{{repo.subscribers_count}}</view>
+                <view class="margin-top-sm">
+                    <text class='icon-attentionfill'></text>
+                    View
+                </view>
+            </view>
+            <view class='flex flex-sub flex-direction solid-right'>
+                <view class="text-xxl text-blue">{{repo.stargazers_count}}</view>
+                <view class="margin-top-sm">
+                    <text class='icon-favorfill'></text>
+                    Star
+                </view>
+            </view>
+            <view class='flex flex-sub flex-direction'>
+                <view class="text-xxl text-green">{{repo.forks_count}}</view>
+                <view class="margin-top-sm">
+                    <text class='icon-fork'></text>
+                    Fork
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<!-- end enterace -->
+<!-- menu -->
+<view class="cu-list menu card-menu sm-border shadow-lg">
+    <view class="cu-item ">
+        <view class='content'>
+            <text class='icon-github text-grey'></text>
+            <text class='text-grey'>Clone URL</text>
+        </view>
+        <view class='action' bindtap="cloneUrl" data-text="{{repo.clone_url}}">
+            <text class='text-grey text-sm'>{{repo.clone_url}}</text>
+        </view>
+    </view>
+    <navigator class="cu-item arrow" url='../agreement/license' hover-class='none'>
+        <view class='content'>
+            <text class='icon-selectionfill text-orange'></text>
+            <text class='text-grey'>License</text>
+        </view>
+        <view class='action'>
+            <text class='text-grey text-sm'>CC BY-NC-SA 4.0</text>
+        </view>
+    </navigator>
+    <navigator class="cu-item arrow" url='./content' hover-class='none'>
+        <view class='content'>
+            <text class='icon-discoverfill text-purple'></text>
+            <text class='text-grey'>View content</text>
+        </view>
+    </navigator>
+    <navigator class="cu-item arrow" url='./me' hover-class='none'>
+        <view class='content'>
+            <text class='icon-questionfill text-red'></text>
+            <text class='text-grey'>Issue</text>
+        </view>
+    </navigator>
+    <navigator class="cu-item arrow" url='./me' hover-class='none'>
+        <view class='content'>
+            <text class='icon-creativefill text-blue'></text>
+            <text class='text-grey'>Events</text>
+        </view>
+    </navigator>
+    <navigator class="cu-item arrow" url='./me' hover-class='none'>
+        <view class='content'>
+            <text class='icon-group_fill text-green'></text>
+            <text class='text-grey'>Contributors</text>
+        </view>
+    </navigator>
+</view>
+<!-- end menu -->
+<!-- README.md -->
+<view class="cu-card article">
+    <view class="cu-item shadow">
+        <view class="title">README.md</view>
+        <view class="content">{{repo.README}}</view>
+    </view>
+</view>
+<!-- end README.md -->
