@@ -9,7 +9,7 @@ Page({
     CustomBar: app.globalData.CustomBar,
     funcList: [
       {
-        icon: "cardboardfill",
+        icon: 'cardboardfill',
         color: "red",
         badge: 0,
         name: "Introduction	"
@@ -179,7 +179,12 @@ Page({
       modalName: null
     });
   },
-
+  handleFuncClick(e) {
+    var func = e.currentTarget.dataset.func;
+    wx.navigateTo({
+      url: func.url
+    })
+  },
   // ListTouch触摸开始
   ListTouchStart(e) {
     this.setData({

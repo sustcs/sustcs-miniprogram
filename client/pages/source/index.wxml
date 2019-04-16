@@ -1,8 +1,10 @@
-<import src="../template/navigate.wxml" />
-<template is="navigate" data="{{...pageConfig}}" />
+<navigationBar isBack="{{true}}" gradual="{{gradual}}">
+    <view slot="backText"></view>
+    <view slot="content"></view>
+</navigationBar>
 <!-- head -->
 <view class="bannerBox ">
-    <view class='bannerBox-back bg-blue'></view>
+    <view class='bannerBox-back'></view>
 </view>
 <view class="header">
     <view class="padding-top text-white text-center">
@@ -62,16 +64,22 @@
             <text class='text-grey text-sm'>CC BY-NC-SA 4.0</text>
         </view>
     </navigator>
-    <navigator class="cu-item arrow" url='./content' hover-class='none'>
+    <navigator class="cu-item arrow" url='./content?repo={{repo.full_name}}' hover-class='none'>
         <view class='content'>
             <text class='icon-discoverfill text-purple'></text>
             <text class='text-grey'>View content</text>
+        </view>
+        <view class='action'>
+            <text class='text-grey text-sm'>{{repo.size/1024}}M</text>
         </view>
     </navigator>
     <navigator class="cu-item arrow" url='./me' hover-class='none'>
         <view class='content'>
             <text class='icon-questionfill text-red'></text>
             <text class='text-grey'>Issue</text>
+        </view>
+        <view class='action'>
+            <text class='text-grey text-sm'>{{repo.has_issues?repo.open_issues_count:''}}</text>
         </view>
     </navigator>
     <navigator class="cu-item arrow" url='./me' hover-class='none'>
@@ -91,8 +99,12 @@
 <!-- README.md -->
 <view class="cu-card article">
     <view class="cu-item shadow">
-        <view class="title">README.md</view>
-        <view class="content">{{repo.README}}</view>
+        <view class="title">
+            <text class="text-grey">README.md</text>
+        </view>
+        <view class="content">
+            <wemark md="{{md}}" highlight type="wemark"></wemark>
+        </view>
     </view>
 </view>
 <!-- end README.md -->

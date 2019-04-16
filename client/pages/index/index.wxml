@@ -6,115 +6,110 @@
 </view>
 <!-- navigator -->
 <view class='page-1 shadow-warp'>
-<!-- head -->
-<view class="bannerBox ">
-  <view class='bannerBox-back bg-blue'></view>
-</view>
-<view class="flex padding-sm justify-between">    
-  <view class="cu-avatar round action" bindtap="showModal" data-target="DrawerModalL" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
-  <navigator class='cu-avatar bg-blue round' hover-class='none' url='../search/index' open-type="navigate">
-    <text class='icon-search lg'></text>
-  </navigator>
-</view>
-<include src="../menu/index.wxml" />
-<!-- head -->
-<!-- enterace -->
-<view class="text-center cu-card ">
-  <view class="bg-img bg-mask padding-tb-xl shadow-blur bg cu-item" style="background-image: url('https://sustcs-cdn.makergyt.com/sust-scene.jpg')">
-    <view class='padding-xl text-white'>
-      <view class='padding-xs text-xl'>
-        Poster
-      </view>
-      <view class='padding-xs'>
-        some Slogan
+  <!-- head -->
+  <view class="bannerBox ">
+    <view class='bannerBox-back bg-blue'></view>
+  </view>
+  <view class="flex padding-sm justify-between">
+    <view class="cu-avatar round action" bindtap="showModal" data-target="DrawerModalL" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
+    <navigator class='cu-avatar bg-blue round' hover-class='none' url='../search/index' open-type="navigate">
+      <text class='icon-search lg'></text>
+    </navigator>
+  </view>
+  <include src="../menu/index.wxml" />
+  <!-- head -->
+  <!-- enterace -->
+  <view class="text-center cu-card ">
+    <view class="bg-img bg-mask padding-tb-xl shadow-blur bg cu-item" style="background-image: url('https://sustcs-cdn.makergyt.com/sust-scene.jpg')">
+      <view class='padding-xl text-white'>
+        <view class='padding-xs text-xl'>Poster</view>
+        <view class='padding-xs'>some Slogan</view>
       </view>
     </view>
   </view>
-</view>
-<!-- enterace -->
-<!-- menu -->
-<view class="cu-list grid col-{{gridCol}} {{gridBorder?'':'no-border'}}">
-  <view class="cu-item" wx:for="{{funcList}}" wx:key wx:if="{{index<gridCol*2}}">
-    <navigator class='icon-{{item.icon}} text-{{item.color}}' hover-class='navigator-hover' url='{{item.url}}' open-type="navigate">
-      <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
-        <block wx:if="{{item.badge!=1}}">{{item.badge>99?'99+':item.badge}}</block>
+  <!-- enterace -->
+  <!-- menu -->
+  <view class="cu-list grid col-{{gridCol}} no-border">
+    <view class="cu-item" wx:for="{{funcList}}" wx:key wx:if="{{index<gridCol*2}}">
+      <view class='icon-{{item.icon}} text-{{item.color}}' bindtap="handleFuncClick" data-func="{{item}}">
+        <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+          <block wx:if="{{item.badge!=1}}">{{item.badge>99?'99+':item.badge}}</block>
+        </view>
+        <text>{{item.name}}</text>
       </view>
-      <text>{{item.name}}</text>
-    </navigator>  
+    </view>
   </view>
-</view>
-<!-- menu -->
-<!-- article -->
-<view class="bg-img padding-top-xl " style="background-image: url('https://sustcs-cdn.makergyt.com/sust-scene-1.jpg')">
-  <view class='bg-shadeBottom margin-top-xl ' style='height:200rpx;'>
-     <view class="flex justify-between padding-tb-xl padding-lr-sm " >    
-      <view class='margin-top-xl '>
-        <view class='text-white text-xl'>Article Title</view>
-        <view class='text-gray text'>date</view>
+  <!-- menu -->
+  <!-- article -->
+  <view class="bg-img padding-top-xl " style="background-image: url('https://sustcs-cdn.makergyt.com/sust-scene-1.jpg')">
+    <view class='bg-shadeBottom margin-top-xl ' style='height:200rpx;'>
+      <view class="flex justify-between padding-tb-xl padding-lr-sm ">
+        <view class='margin-top-xl '>
+          <view class='text-white text-xl'>Article Title</view>
+          <view class='text-gray text'>date</view>
+        </view>
+        <view class='margin-top-xl '>
+          <text class='icon-tag text-xxl'></text>
+          <text class='icon-share text-xxl margin-left'></text>
+        </view>
       </view>
-      <view class='margin-top-xl '>
-        <text class='icon-tag text-xxl'></text>
-        <text class='icon-share text-xxl margin-left'></text>
-      </view>
-     </view>
+    </view>
   </view>
-</view>
-<view class="cu-bar bg-white solid-bottom padding-tb-xs ">
-  <view class='action'>
-   Article Title
+  <view class="cu-bar bg-white solid-bottom padding-tb-xs ">
+    <view class='action'>Article Title</view>
+    <view class='action'>
+      <view class="cu-avatar radius lg" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
+    </view>
   </view>
-  <view class='action'>
-    <view class="cu-avatar radius lg" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
-  </view>
-</view>
-<!-- article -->
+  <!-- article -->
 </view>
 <!-- page-1 -->
 <!-- Split -->
 <view class='padding'>
   <view class='cu-steps'>
-    <view class='cu-item'>
-      ^_^
-    </view>
+    <view class='cu-item'>^_^</view>
   </view>
 </view>
 <!-- Split -->
-
 <!-- page-2 -->
 <!-- weather -->
 <view class="cu-card article no-card solid-bottom">
   <view class="flex bg-white">
-      <view class='flex-twice  padding-tb-sm'>
-        <view class="grid col-2 ">
-          <view class="padding-lr text-center text-xsl text-black" >{{day}}</view>
-          <view >
-            <view class="grid col-1 ">
-              <view class="align-center padding-sm" >{{weekday}}【Week {{week}}】</view>
-            </view>
-            <view class="grid col-1 ">
-              <view class="align-center padding-sm" >{{month}}/{{year}}</view>
-            </view>
+    <view class='flex-twice  padding-tb-sm'>
+      <view class="grid col-2 ">
+        <view class="padding-lr text-center text-xsl text-black">{{day}}</view>
+        <view>
+          <view class="grid col-1 ">
+            <view class="align-center padding-sm">{{weekday}}【Week {{week}}】</view>
+          </view>
+          <view class="grid col-1 ">
+            <view class="align-center padding-sm">{{month}}/{{year}}</view>
           </view>
         </view>
-        <view class="grid col-1 ">
-          <view class="align-center padding-xs padding-lr" ><text class='icon-locationfill text-blue '></text> {{district}}:{{temprature}}°C  air quality:{{air}}</view>
-        </view>
-        <view class="grid col-1 ">
-          <view class="align-center padding-xs padding-lr" >{{weather}} {{advice}}</view>
+      </view>
+      <view class="grid col-1 ">
+        <view class="align-center padding-xs padding-lr">
+          <text class='icon-locationfill text-blue '></text>
+          {{district}}:{{temprature}}°C  air quality:{{air}}
         </view>
       </view>
-      <view class='flex-sub padding-xs'>
-        <view class="grid col-1  grid-square">
-          <view class="bg-img align-center " style="background-image:url(https://sustcs-cdn.makergyt.com/sust-scene-2.jpg);"></view>
-        </view>
+      <view class="grid col-1 ">
+        <view class="align-center padding-xs padding-lr">{{weather}} {{advice}}</view>
       </view>
+    </view>
+    <view class='flex-sub padding-xs'>
+      <view class="grid col-1  grid-square">
+        <view class="bg-img align-center " style="background-image:url(https://sustcs-cdn.makergyt.com/sust-scene-2.jpg);"></view>
+      </view>
+    </view>
   </view>
 </view>
 <!-- weather -->
 <!-- course -->
 <view class="cu-bar bg-white solid-bottom ">
   <view class='action'>
-    <text class='icon-titles text-orange '></text> Today's course
+    <text class='icon-titles text-orange '></text>
+    Today's course
   </view>
 </view>
 <view class="cu-timeline " wx:for="{{courseList}}" wx:key>
@@ -127,7 +122,9 @@
       <view class='margin-top-sm text-content'>
         <view class="flex justify-between">
           <view class=''>{{item.teacher}}:{{item.name}}</view>
-          <view class=''><text class='icon-subscription text-white '></text> </view>
+          <view class=''>
+            <text class='icon-subscription text-white '></text>
+          </view>
         </view>
       </view>
     </view>
@@ -137,18 +134,18 @@
 <!-- todo -->
 <view class="cu-bar bg-white solid-bottom ">
   <view class='action'>
-    <text class='icon-titles text-orange '></text> Recently to be done [Try the left slide]
+    <text class='icon-titles text-orange '></text>
+    Recently to be done [Try the left slide]
   </view>
 </view>
 <view class="cu-list menu solid-bottom">
   <view class="cu-item {{modalName=='move-box-'+ index?'move-cur':''}} sm-border'" wx:for="{{activityList}}" wx:key bindtouchstart='ListTouchStart' bindtouchmove='ListTouchMove' bindtouchend='ListTouchEnd' data-target="move-box-{{index}}">
-
     <view class='content'>
       <text class='icon-warn text-yellow'></text>
       <text class='text-grey'>{{item.name}}</text>
     </view>
     <view class='action'>
-      <view class='text-grey text-xs'>{{item.time}} </view>
+      <view class='text-grey text-xs'>{{item.time}}</view>
       <view class="cu-tag round bg-grey sm">{{item.room}}</view>
     </view>
     <view class='move'>
@@ -161,7 +158,8 @@
 <!-- activity -->
 <view class="cu-bar bg-white solid-bottom ">
   <view class='action'>
-    <text class='icon-titles text-orange '></text> Recent activity
+    <text class='icon-titles text-orange '></text>
+    Recent activity
   </view>
 </view>
 <view class="cu-list menu ">

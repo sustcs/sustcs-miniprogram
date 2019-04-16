@@ -1,0 +1,35 @@
+<headerBar gradual="{{gradual}}" caption="{{caption}}">
+    <view slot="title">
+        <view class='content'>
+            <view class="text-df">{{gradual}}</view>
+            <view class='text-sm'>ss</view>
+        </view>
+    </view>
+    <view slot="form">
+        <view class="bg-white shadow-blur bg cu-item">
+            <view class='padding flex text-center text-grey bg-white shadow-warp'>
+                <view class='flex flex-sub flex-direction solid-right'>
+                    <view class="text-xxl text-orange">{{repo.subscribers_count}}</view>
+                    <view class="margin-top-sm">
+                        <text class='icon-attentionfill'></text>
+                        View
+                    </view>
+                </view>
+                <view class='flex flex-sub flex-direction solid-right'>
+                    <view class="text-xxl text-blue">{{repo.stargazers_count}}</view>
+                    <view class="margin-top-sm">
+                        <text class='icon-favorfill'></text>
+                        Star
+                    </view>
+                </view>
+                <view class='flex flex-sub flex-direction'>
+                    <view class="text-xxl text-green">{{repo.forks_count}}</view>
+                    <view class="margin-top-sm">
+                        <text class='icon-fork'></text>
+                        Fork
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</headerBar>

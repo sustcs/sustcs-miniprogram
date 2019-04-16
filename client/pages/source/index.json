@@ -1,1 +1,6 @@
-{}
+{
+    "usingComponents": {
+        "wemark": "../../components/wemark/wemark",
+        "navigationBar": "../../components/colorui/cu-custom"
+    }
+}

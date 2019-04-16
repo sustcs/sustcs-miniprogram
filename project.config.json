@@ -5,7 +5,7 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"es6": true,
+		"es6": false,
 		"postcss": false,
 		"minified": false,
 		"newFeature": true,
@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 8,
+			"current": 12,
 			"list": [
 				{
 					"id": 0,
@@ -102,6 +102,33 @@
 					"name": "source/preview",
 					"pathName": "pages/source/preview",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "source/content",
+					"pathName": "pages/source/content",
+					"query": "repo=sustcs/course",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login/github",
+					"pathName": "pages/login/github",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/login/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "course",
+					"pathName": "pages/course/index",
 					"scene": null
 				}
 			]

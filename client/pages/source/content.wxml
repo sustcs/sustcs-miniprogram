@@ -1,10 +1,10 @@
 <import src="../template/navigate.wxml" />
 <template is="navigate" data="{{...pageConfig}}" />
 <view class="cu-list menu sm-border ">
-    <view wx:for="{{20}}" wx:key class="cu-item {{menuArrow?'arrow':''}}">
-        <view class='content'>
+    <view wx:for="{{dataList}}" wx:key class="cu-item {{menuArrow?'arrow':''}}">
+        <view class='content' bindtap="handleItemClick" data-item="{{item}}">
             <text class='icon-file text-grey'></text>
-            <text class='text-grey'>root</text>
+            <text class='text-grey'>{{item.name}}</text>
         </view>
     </view>
 </view>

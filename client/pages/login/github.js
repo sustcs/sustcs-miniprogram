@@ -1,66 +1,88 @@
 // pages/login/github.js
+const app = getApp();
+const { base64_encode } = require('../../utils/base64');
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    pageConfig: {
+      title: "github",
+      StatusBar: app.globalData.StatusBar,
+      CustomBar: app.globalData.CustomBar,
+    },
+    TabCur: 0,
+    method: ['Token', 'Account']
   },
-
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+  tabSelect(e) {
+    this.setData({
+      TabCur: e.currentTarget.dataset.id,
+      scrollLeft: (e.currentTarget.dataset.id - 1) * 60
+    })
   },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
+  onLoad(options) {
   },
+  login(e) {
+    let authorization = '';
+    if (this.data.TabCur === 0) {
+      var token = e.detail.value.token;
+      if (token.length === 0) {
+        wx.showToast({
+          title: 'Please input token',
+          icon: 'none'
+        })
+      } else {
+        authorization = 'token ' + token
+      }
+    } else {
+      var username = e.detail.value.username;
+      var password = e.detail.value.password;
+      if (username.length === 0) {
+        wx.showToast({
+          title: 'Please input username',
+          icon: 'none'
+        })
+      } else if (password.length === 0) {
+        wx.showToast({
+          title: 'Please input password',
+          icon: 'none'
+        })
+      } else {
+        authorization = 'Basic ' + base64_encode(username + ':' + password)
+      }
+    }
+    if (authorization.length !== 0) {
+      wx.setStorageSync('Authorization', authorization)
+      wx.showLoading({ title: 'loading' })
+      wx.request({
+        url: 'https://api.github.com/user',
+        header: {
+          'Authorization': wx.getStorageSync('Authorization'),
+          'Accept': 'application/vnd.github.v3+json'
+        },
+        success(res) {
 
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
+          wx.hideLoading()
+          if (res.statusCode === 403 || res.statusCode === 401) {
+            wx.showModal({
+              title: 'Login Failed',
+              content: res.data.message,
+              showCancel: false,
+              confirmText: 'received',
+              confirmColor: '#0081ff'
+            });
+            wx.setStorageSync('Authorization', '')
 
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
+          } else if (res.statusCode === 200) {
+            wx.setStorageSync('userInfo', res.data)
+            wx.showToast({
+              title: 'Login success',
+              icon: 'success',
+              duration: 500
+            })
+            wx.navigateBack()
+            console.log('res.data', res.data)
+          }
+        }
+      })
+    }
 
   }
 })

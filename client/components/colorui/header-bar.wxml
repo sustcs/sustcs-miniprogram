@@ -1,0 +1,19 @@
+<navigationBar isBack="{{true}}" gradual="{{gradual}}">
+    <view slot="backText"></view>
+    <view slot="content">Course</view>
+</navigationBar>
+<view class="box">
+    <view class="canui-order-details-head" style="background-image:linear-gradient(90deg, {{gradual}});">
+        <view class="cu-list menu">
+            <view class="cu-item">
+                <slot name="title"></slot>
+                <view class='action' style="background-image: url({{caption}});"></view>
+            </view>
+        </view>
+    </view>
+    <view class="padding canui-card-fiex-radius-box">
+        <view class="cu-list menu bg-white">
+            <slot name="form"></slot>
+        </view>
+    </view>
+</view>

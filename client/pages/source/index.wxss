@@ -6,6 +6,7 @@
 
 .bannerBox .bannerBox-back {
     height: 200rpx;
+    background-image: linear-gradient(90deg, #0081ff, #1cbbb4);
 }
 .header{
     height:100rpx;

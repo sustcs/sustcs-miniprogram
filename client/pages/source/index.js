@@ -1,8 +1,9 @@
 //index.js
 //获取应用实例
-var api = require('../../service/api.js');
+const base64 = require('../../utils/base64');
+const config = require('../../config');
+const { getCurrentPageUrl } = require('../../utils/common');
 const app = getApp();
-
 Page({
     data: {
         pageConfig: {
@@ -14,6 +15,8 @@ Page({
         readme: null,
         baseUrl: null,
         md: null,
+        gradual: ['#0081ff', '#1cbbb4'],
+        caption: 'https://cdn.nlark.com/yuque/0/2019/png/285274/1553229206281-assets/web-upload/12edf711-8c22-44e0-898b-2b7e6a6fc23d.png'
     },
 
     onLoad: function () {
@@ -40,60 +43,69 @@ Page({
     },
 
     getRepo: function () {
-        //wx.showLoading()
         let that = this
-        var url = 'https://api.github.com/repos/sustcs/course';
-        console.log(api.get(url));
-        // api.get(url).then((res) => {
-        //     if (res.statusCode === HTTP_STATUS.SUCCESS) {
-        //         let baseUrl = 'https://raw.githubusercontent.com/' + res.data.full_name + '/master/'
-        //         that.setData({
-        //             repo: res.data,
-        //             baseUrl: baseUrl
-        //         }, () => {
-        //             that.getReadme()
-        //             that.checkStarring()
-        //             // that.checkWatching()
-        //         })
-        //     } else {
-        //         wx.showToast({
-        //             icon: 'none',
-        //             title: res.data.message
-        //         })
-        //     }
-        //     // wx.stopPullDownRefresh()
-        //     wx.hideLoading()
-        // })
+
+        wx.showLoading()
+        wx.request({
+            url: config.basic_url + config.repo_full_name,
+            header: {
+                'Authorization': wx.getStorageSync('Authorization')
+            },
+            success(res) {
+
+                if (res.statusCode === 403 || res.statusCode === 401) {
+                    wx.setStorageSync('Authorization', '')
+                    let path = getCurrentPageUrl()
+                    if (path !== 'pages/login/github') {
+                        wx.navigateTo({
+                            url: '../login/github'
+                        })
+                    }
+                } else if (res.statusCode === 200) {
+                    that.setData({
+                        repo: res.data,
+                    }, () => {
+                        that.getReadme(),
+                            wx.hideLoading()
+                    })
+                }
+            }
+        })
 
     },
     getReadme() {
-        const { repo } = this.state
-        let url = '/repos/' + repo.full_name + '/readme'
         let that = this
-        api.get(url).then((res) => {
-            that.setState({
-                readme: res.data
-            }, () => {
-                that.parseReadme()
-            })
+        wx.request({
+            url: config.basic_url + config.repo_full_name + '/readme',
+            header: {
+                'Authorization': wx.getStorageSync('Authorization')
+            },
+            success(res) {
+                if (res.statusCode === 403 || res.statusCode === 401) {
+                    wx.setStorageSync('Authorization', '')
+                    let path = getCurrentPageUrl()
+                    if (path !== 'pages/login/github') {
+                        wx.navigateTo({
+                            url: '../login/github'
+                        })
+                    }
+                } else if (res.statusCode === 200) {
+                    that.setData({
+                        readme: res.data
+                    }, () => {
+                        that.parseReadme()
+
+                    })
+                }
+
+
+            }
         })
     },
     parseReadme() {
-        const { readme } = this.state
-        this.setState({
-            md: base64_decode(readme.content)
+        const { readme } = this.data
+        this.setData({
+            md: base64.base64_decode(readme.content)
         })
     },
-    checkStarring() {
-        if (hasLogin()) {
-            const { repo } = this.state
-            let that = this
-            let url = '/user/starred/' + repo.full_name
-            api.get(url).then((res) => {
-                that.setState({
-                    hasStar: res.statusCode === 204
-                })
-            })
-        }
-    }
 });
