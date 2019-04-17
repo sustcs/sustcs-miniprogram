@@ -1,0 +1,14 @@
+<navigationBar bgColor="bg-gradual-red" isBack="{{true}}">
+    <view slot="backText"></view>
+    <view slot="content">Introduction</view>
+</navigationBar>
+<scroll-view scroll-x class="bg-white nav flex text-center" scroll-with-animation scroll-left="{{scrollLeft}}">
+    <view class="cu-item flex-sub {{index==TabCur?'text-green cur':''}}" wx:for="{{allItem}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+        {{item.name}}
+    </view>
+</scroll-view>
+<view class='margin-xl bg-white padding-xl radius shadow-lg'>
+    <view class='text-content'>
+        <view>{{goal}}</view>
+    </view>
+</view>

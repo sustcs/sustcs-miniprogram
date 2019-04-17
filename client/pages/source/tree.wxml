@@ -1,3 +1,3 @@
 <import src="../template/navigate.wxml" />
 <template is="navigate" data="{{...pageConfig}}" />
-<tree Prefix="doc/" bind:fileInfo="fileInfo"></tree>
+<tree Prefix="" bind:fileInfo="fileInfo"></tree>

@@ -41,22 +41,28 @@ Page({
 
 
     },
-    onLoad: function () { },
-    tabSelect(e) {
-        console.log(e);
-        this.setData({
-            TabCur: e.currentTarget.dataset.id,
-            scrollLeft: (e.currentTarget.dataset.id - 1) * 60
-        });
+    onLoad: function () {
+        const db = wx.cloud.database()
+        var that = this
+        db.collection('introduction').get({
+            success(res) {
+                that.setData({
+                    goal: res.data[0].content,
+                });
+            }
+        })
     },
-    onShareAppMessage(res) {
-        if (res.from === 'button') {
-            // 来自页面内转发按钮
-            console.log(res.target)
-        }
-        return {
-            title: '自定义转发标题',
-            path: '/page/user?id=123'
-        }
-    }
+    tabSelect(e) {
+        const db = wx.cloud.database()
+        var that = this
+        db.collection('introduction').get({
+            success(res) {
+                that.setData({
+                    goal: res.data[e.currentTarget.dataset.id].content,
+                    TabCur: e.currentTarget.dataset.id,
+                });
+            }
+        })
+    },
+
 });

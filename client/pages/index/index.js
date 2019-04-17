@@ -12,10 +12,11 @@ Page({
         icon: 'cardboardfill',
         color: "red",
         badge: 0,
-        name: "Introduction	"
+        name: "Introduction	",
+        url: "../introduction/index"
       },
       {
-        icon: "group_fill",
+        icon: "voicefill",
         color: "orange",
         badge: 0,
         name: "Course",
@@ -23,14 +24,14 @@ Page({
       },
       {
         icon: "peoplefill",
-        color: "yellow",
+        color: "purple",
         badge: 0,
         name: "Teacher",
-        url: "../teacher/index"
+        url: "../teacher/indexes"
       },
       {
         icon: "discoverfill",
-        color: "olive",
+        color: "blue",
         badge: 22,
         name: "Source",
         url: "../source/index"
@@ -43,13 +44,13 @@ Page({
       },
       {
         icon: "upstagefill",
-        color: "blue",
+        color: "olive",
         badge: 0,
         name: "Competition"
       },
       {
         icon: "lightfill",
-        color: "purple",
+        color: "yellow",
         badge: 0,
         name: "Exam"
       },

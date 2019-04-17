@@ -8,3 +8,26 @@
         </view>
     </view>
 </view>
+<view class="cu-modal bottom-modal {{isDetail?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white">
+            <view class="action text-grey">{{fileDetail.name}}</view>
+            <view class="action text-blue" bindtap="hideModal">
+                <text class="icon-close "></text>
+            </view>
+        </view>
+        <view class="cu-list menu sm-border card-menu text-left">
+            <view class="cu-item ">
+                <view class="content">
+                    <text class="text-grey">FileSize:</text>
+                    <text>{{fileDetail.size}}</text>
+                </view>
+                <view class="action text-xl">
+                    <text class="icon-down padding" bindtap="download" data-url="{{fileDetail.download_url}}" data-size="{{fileDetail.size}}"></text>
+                    <text class="icon-forward padding" bindtap="forward" data-url="{{fileDetail.download_url}}"></text>
+                    <text class="icon-attention padding" bindtap="preview" data-url="{{fileDetail.download_url}}" data-size="{{fileDetail.size}}"></text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

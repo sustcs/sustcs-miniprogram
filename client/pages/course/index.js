@@ -19,12 +19,12 @@ Page({
                     {
                         icon: "questionfill",
                         name: "Network",
-                        url: "../feedback/index"
+                        url: "introduce"
                     },
                     {
                         icon: "discoverfill",
                         name: "Date structure",
-                        url: "../about/index"
+                        url: "introduce"
                     }
                 ]
 
@@ -36,17 +36,17 @@ Page({
                     {
                         icon: "myfill",
                         name: "Operate system",
-                        url: "../user/index"
+                        url: "introduce"
                     },
                     {
                         icon: "questionfill",
                         name: "Algorithm",
-                        url: "../feedback/index"
+                        url: "introduce"
                     },
                     {
                         icon: "discoverfill",
                         name: "C/C++",
-                        url: "../about/index"
+                        url: "introduce"
                     }
                 ]
 

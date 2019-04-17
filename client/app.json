@@ -4,6 +4,7 @@
     "pages/search/index",
     "pages/menu/all",
     "pages/teacher/index",
+    "pages/teacher/indexes",
     "pages/feedback/index",
     "pages/user/index",
     "pages/about/index",
@@ -23,7 +24,9 @@
     "pages/source/index",
     "pages/source/content",
     "pages/source/preview",
-    "pages/agreement/license"
+    "pages/source/issueList",
+    "pages/agreement/license",
+    "pages/introduction/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

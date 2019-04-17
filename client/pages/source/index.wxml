@@ -73,7 +73,7 @@
             <text class='text-grey text-sm'>{{repo.size/1024}}M</text>
         </view>
     </navigator>
-    <navigator class="cu-item arrow" url='./me' hover-class='none'>
+    <navigator class="cu-item arrow" url='./issueList' hover-class='none'>
         <view class='content'>
             <text class='icon-questionfill text-red'></text>
             <text class='text-grey'>Issue</text>
