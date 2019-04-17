@@ -6,28 +6,12 @@
   </view>
 </view>
 <view class='padding-xl text-center text-grey'>
-    <image src='https://sustcs-cdn.makergyt.com/sust-logo.jpg' class='response round' mode='widthFix' style='width:100rpx;margin-top:100rpx'></image>
-    <view class='text-df margin-top-xl'>SUSTCS
+  <image src='https://sustcs-cdn.makergyt.com/sust-logo.jpg' class='response round' mode='widthFix' style='width:100rpx;margin-top:100rpx'></image>
+  <view class='text-df margin-top-xl'>
+    SUSTCS
     <text class='text-df'>v1.0</text>
-    </view>
-    <view class='margin-top-sm'>
+  </view>
+  <view class='margin-top-sm'>
     <text>©2019 All rights reserved.</text>
-    </view>
-</view>
-<view class='padding flex text-center text-grey bg-white shadow-warp'>
-  <view class='flex flex-sub flex-direction solid-right'>
-    <view class="text-xxl text-orange">{{visitTotal}}</view>
-    <view class="margin-top-sm">
-      <text class='icon-attentionfill'></text> View</view>
-  </view>
-  <view class='flex flex-sub flex-direction solid-right'>
-    <view class="text-xxl text-blue">{{starCount}}</view>
-    <view class="margin-top-sm">
-      <text class='icon-favorfill'></text> Star</view>
-  </view>
-  <view class='flex flex-sub flex-direction'>
-    <view class="text-xxl text-green">{{forksCount}}</view>
-    <view class="margin-top-sm">
-      <text class='icon-fork'></text> Reward</view>
   </view>
 </view>

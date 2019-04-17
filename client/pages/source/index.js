@@ -45,7 +45,9 @@ Page({
     getRepo: function () {
         let that = this
 
-        wx.showLoading()
+        wx.showLoading({
+            title: 'loading'
+        })
         wx.request({
             url: config.basic_url + config.repo_full_name,
             header: {
@@ -81,6 +83,7 @@ Page({
                 'Authorization': wx.getStorageSync('Authorization')
             },
             success(res) {
+                console.log(res)
                 if (res.statusCode === 403 || res.statusCode === 401) {
                     wx.setStorageSync('Authorization', '')
                     let path = getCurrentPageUrl()
