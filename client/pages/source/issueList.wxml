@@ -4,22 +4,28 @@
 </navigationBar>
 <view class="bg-white nav text-center">
     <view class="flex text-center">
-        <view class="cu-item flex-sub {{index==TabCur?'text-blue cur':''}}" wx:for="{{menu}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+        <view class="cu-item flex-sub {{index==TabCur?'text-blue cur':''}}" wx:for="{{state}}" wx:key bindtap="tabSelect" data-id="{{index}}">
             {{item}}
         </view>
     </view>
 </view>
 <view class="cu-list menu-avatar">
-    <view class="cu-item" wx:for="{{2}}" wx:key>
-        <view class="cu-avatar lg round bg-red">C</view>
+    <navigator class="cu-item" wx:for="{{issueList}}" wx:key url="./issueDetail?url={{item.url}}" hover-class='none'>
+        <view class="cu-avatar round bg-green">
+            ?
+            <view class="cu-tag badge">{{item.comments}}</view>
+        </view>
         <view class="content">
-            <view class="text-grey">#1</view>
+            <view class="">
+                <text class="text-cut">{{item.title}}</text>
+                <text class="text-grey margin-left-sm">#{{item.number}}</text>
+            </view>
             <view class="text-gray text-sm flex">
-                <text class="text-cut">by test</text>
+                <text class="">opend by {{item.user.login}}</text>
             </view>
         </view>
         <view class="action">
-            <view class="text-grey text-xs">2 days ago</view>
+            <view class="text-grey text-sm">{{item.created_at}}</view>
         </view>
-    </view>
+    </navigator>
 </view>

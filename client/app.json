@@ -25,6 +25,7 @@
     "pages/source/content",
     "pages/source/preview",
     "pages/source/issueList",
+    "pages/source/issueDetail",
     "pages/agreement/license",
     "pages/introduction/index"
   ],

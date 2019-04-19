@@ -1,0 +1,37 @@
+<navigationBar bgColor="bg-gradual-green" isBack="{{true}}">
+    <view slot="backText"></view>
+    <view slot="content">Issue</view>
+</navigationBar>
+<view class="cu-bar bg-white solid-bottom ">
+    <view class='action'>
+        <text class='icon-titles text-orange '></text>
+        #{{issue.number + issue.title}}
+    </view>
+</view>
+<view class="cu-card no-card article">
+    <view class="cu-item shadow">
+        <view class="content">
+            <wemark md="{{issue.body}}" highlight type="wemark"></wemark>
+        </view>
+    </view>
+</view>
+<view class="cu-list menu-avatar comment">
+    <view class="cu-item" wx:for="{{comments}}" wx:key>
+        <view class="cu-avatar round" style="background-image:url({{item.user.avatar_url}});"></view>
+        <view class="content">
+            <view class="text-grey">{{item.user.login}}</view>
+            <view class="bg-green padding-sm radius margin-top-sm  text-sm">
+                <view class="flex">
+                    <wemark md="{{item.body}}" highlight type="wemark"></wemark>
+                </view>
+            </view>
+            <view class="margin-top-sm flex justify-between">
+                <view class="text-gray text-df">{{item.created_at}}</view>
+                <!-- <view>
+                    <text class="icon-appreciatefill text-red"></text>
+                    <text class="icon-messagefill text-gray margin-left-sm"></text>
+                </view> -->
+            </view>
+        </view>
+    </view>
+</view>

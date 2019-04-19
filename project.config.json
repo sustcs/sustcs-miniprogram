@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 14,
+			"current": 16,
 			"list": [
 				{
 					"id": 0,
@@ -143,6 +143,21 @@
 					"id": -1,
 					"name": "introduction",
 					"pathName": "pages/introduction/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 15,
+					"name": "source/preview",
+					"pathName": "pages/source/preview",
+					"query": "url=https://raw.githubusercontent.com/sustcs/course/master/README.md&name=README.md",
+					"scene": null
+				},
+				{
+					"id": 16,
+					"name": "source/issueDetail",
+					"pathName": "pages/source/issueDetail",
+					"query": "url=https://api.github.com/repos/huangjianke/Gitter/issues/22",
 					"scene": null
 				}
 			]

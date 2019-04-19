@@ -14,6 +14,7 @@ Page({
         repo: null,
         readme: null,
         baseUrl: null,
+        isLoad: true,
         md: null,
         gradual: ['#0081ff', '#1cbbb4'],
         caption: 'https://cdn.nlark.com/yuque/0/2019/png/285274/1553229206281-assets/web-upload/12edf711-8c22-44e0-898b-2b7e6a6fc23d.png'
@@ -21,7 +22,6 @@ Page({
 
     onLoad: function () {
         this.getRepo()
-
     },
     cloneUrl: function (e) {
         console.log(e)
@@ -43,71 +43,97 @@ Page({
     },
 
     getRepo: function () {
-        let that = this
-
         wx.showLoading({
             title: 'loading'
         })
-        wx.request({
-            url: config.basic_url + config.repo_full_name,
-            header: {
-                'Authorization': wx.getStorageSync('Authorization')
+        let that = this
+        wx.cloud.callFunction({
+            name: 'github',
+            data: {
+                url: config.basic_url + config.repo_full_name,
+                headers: {
+                    'Authorization': wx.getStorageSync('Authorization'),
+                    'User-Agent': 'request'
+                },
             },
-            success(res) {
-
-                if (res.statusCode === 403 || res.statusCode === 401) {
-                    wx.setStorageSync('Authorization', '')
-                    let path = getCurrentPageUrl()
-                    if (path !== 'pages/login/github') {
-                        wx.navigateTo({
-                            url: '../login/github'
-                        })
-                    }
-                } else if (res.statusCode === 200) {
+            complete: res => {
+                console.log(res)
+                if (res.errMsg === 'cloud.callFunction:ok' && res.result !== null) {
                     that.setData({
-                        repo: res.data,
+                        repo: res.result,
                     }, () => {
                         that.getReadme(),
                             wx.hideLoading()
                     })
+                } else if (res.errMsg !== 'cloud.callFunction:ok') {
+                    wx.showModal({
+                        title: res.errMsg,
+                        content: 'Please check the network connection',
+                        showCancel: false,
+                    })
+                } else if (res.result === null) {
+                    console.log('cloudfunction error')
                 }
-            }
+                // if (res.statusCode === 403 || res.statusCode === 401) {
+                //     wx.setStorageSync('Authorization', '')
+                //     let path = getCurrentPageUrl()
+                //     if (path !== 'pages/login/github') {
+                //         wx.navigateTo({
+                //             url: '../login/github'
+                //         })
+                //     }
+                // } else if (res.statusCode === 200) {
+                // }
+            },
         })
 
     },
     getReadme() {
         let that = this
-        wx.request({
-            url: config.basic_url + config.repo_full_name + '/readme',
-            header: {
-                'Authorization': wx.getStorageSync('Authorization')
+        wx.cloud.callFunction({
+            name: 'github',
+            data: {
+                url: config.basic_url + config.repo_full_name + '/readme',
+                headers: {
+                    'Authorization': wx.getStorageSync('Authorization'),
+                    'User-Agent': 'request'
+                },
             },
-            success(res) {
+            complete: res => {
                 console.log(res)
-                if (res.statusCode === 403 || res.statusCode === 401) {
-                    wx.setStorageSync('Authorization', '')
-                    let path = getCurrentPageUrl()
-                    if (path !== 'pages/login/github') {
-                        wx.navigateTo({
-                            url: '../login/github'
-                        })
-                    }
-                } else if (res.statusCode === 200) {
+                if (res.errMsg === 'cloud.callFunction:ok' && res.result !== null) {
                     that.setData({
-                        readme: res.data
+                        readme: res.result
                     }, () => {
                         that.parseReadme()
 
                     })
+                } else if (res.errMsg !== 'cloud.callFunction:ok') {
+                    wx.showModal({
+                        title: res.errMsg,
+                        content: 'Please check the network connection',
+                        showCancel: false,
+                    })
+                } else if (res.result === null) {
+                    console.log('cloudfunction error')
                 }
-
-
-            }
+                // if (res.statusCode === 403 || res.statusCode === 401) {
+                //     wx.setStorageSync('Authorization', '')
+                //     let path = getCurrentPageUrl()
+                //     if (path !== 'pages/login/github') {
+                //         wx.navigateTo({
+                //             url: '../login/github'
+                //         })
+                //     }
+                // } else if (res.statusCode === 200) {
+                // }
+            },
         })
     },
     parseReadme() {
         const { readme } = this.data
         this.setData({
+            isLoad: false,
             md: base64.base64_decode(readme.content)
         })
     },

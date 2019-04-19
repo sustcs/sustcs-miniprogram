@@ -103,7 +103,8 @@
             <text class="text-grey">README.md</text>
         </view>
         <view class="content">
-            <wemark md="{{md}}" highlight type="wemark"></wemark>
+            <view class="cu-load load-icon loading" wx:if="{{isLoad}}"></view>
+            <wemark md="{{md}}" highlight type="wemark" wx:else></wemark>
         </view>
     </view>
 </view>

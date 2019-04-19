@@ -2,6 +2,7 @@
 //获取应用实例
 const config = require('../../config');
 const app = getApp();
+const canFileType = ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf']
 Page({
     data: {
         pageConfig: {
@@ -31,40 +32,52 @@ Page({
         })
     },
     getContents() {
+        wx.showLoading({
+            title: 'loading'
+        })
         let that = this
         const { repo, path } = this.data
         let url = config.basic_url + repo + '/contents'
         if (path) {
             url = url + '/' + path
         }
-        wx.showLoading({
-            title: 'loading',
-        })
-        wx.request({
-            url: url,
-            header: {
-                'Authorization': wx.getStorageSync('Authorization')
+        wx.cloud.callFunction({
+            name: 'github',
+            data: {
+                url: url,
+                headers: {
+                    'Authorization': wx.getStorageSync('Authorization'),
+                    'User-Agent': 'request'
+                },
             },
-            success(res) {
-                //console.log('success', res)
-                if (res.statusCode === 403 || res.statusCode === 401) {
-                    wx.setStorageSync('Authorization', '')
-                    let path = getCurrentPageUrl()
-                    if (path !== 'pages/login/github') {
-                        wx.navigateTo({
-                            url: '../login/github'
-                        })
-                    }
-                } else if (res.statusCode === 200) {
+            complete: res => {
+                console.log(res)
+                if (res.errMsg === 'cloud.callFunction:ok' && res.result !== null) {
                     that.setData({
-                        dataList: res.data,
+                        dataList: res.result,
                     }, () => {
                         wx.hideLoading()
                     })
+                } else if (res.errMsg !== 'cloud.callFunction:ok') {
+                    wx.showModal({
+                        title: res.errMsg,
+                        content: 'Please check the network connection',
+                        showCancel: false,
+                    })
+                } else if (res.result === null) {
+                    console.log('cloudfunction error')
                 }
-
-
-            }
+                // if (res.statusCode === 403 || res.statusCode === 401) {
+                //     wx.setStorageSync('Authorization', '')
+                //     let path = getCurrentPageUrl()
+                //     if (path !== 'pages/login/github') {
+                //         wx.navigateTo({
+                //             url: '../login/github'
+                //         })
+                //     }
+                // } else if (res.statusCode === 200) {
+                // }
+            },
         })
     },
     download(e) {
@@ -144,27 +157,52 @@ Page({
                 }
             })
         } else {
+            var index = e.currentTarget.dataset.name.lastIndexOf(".");
+            var suffix = e.currentTarget.dataset.name.substring(index + 1, e.currentTarget.dataset.name.length);
             wx.showLoading({
                 title: 'loading',
             })
-            wx.downloadFile({
-                url: e.currentTarget.dataset.url,
-                success(res) {
-                    if (res.statusCode === 200) {
-                        const filePath = res.tempFilePath
-                        wx.openDocument({
-                            filePath,
-                            success(res) {
-                                wx.hideLoading()
-                                that.setData({
-                                    isDetail: false
-                                })
-                            }
+            if (suffix === 'md') {
+                wx.navigateTo({
+                    url: 'preview?url=' + e.currentTarget.dataset.url + '&name=' + e.currentTarget.dataset.name,
+                    success(res) {
+                        wx.hideLoading()
+                        that.setData({
+                            isDetail: false
                         })
                     }
+                })
 
-                }
-            })
+            } else if (canFileType.indexOf(suffix) > -1) {
+                wx.downloadFile({
+                    url: e.currentTarget.dataset.url,
+                    success(res) {
+                        if (res.statusCode === 200) {
+                            const filePath = res.tempFilePath
+                            wx.openDocument({
+                                filePath,
+                                fileType: suffix,
+                                success(res) {
+                                    wx.hideLoading()
+                                    that.setData({
+                                        isDetail: false
+                                    })
+                                }
+                            })
+                        }
+
+                    }
+                })
+            } else {
+                wx.hideLoading()
+                wx.showToast({
+                    title: 'Unsupported File types',
+                    icon: 'none',
+                    duration: 1000
+                })
+            }
+
+
         }
 
     },

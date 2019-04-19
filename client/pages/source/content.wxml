@@ -25,7 +25,7 @@
                 <view class="action text-xl">
                     <text class="icon-down padding" bindtap="download" data-url="{{fileDetail.download_url}}" data-size="{{fileDetail.size}}"></text>
                     <text class="icon-forward padding" bindtap="forward" data-url="{{fileDetail.download_url}}"></text>
-                    <text class="icon-attention padding" bindtap="preview" data-url="{{fileDetail.download_url}}" data-size="{{fileDetail.size}}"></text>
+                    <text class="icon-attention padding" bindtap="preview" data-url="{{fileDetail.download_url}}" data-size="{{fileDetail.size}}" data-name="{{fileDetail.name}}"></text>
                 </view>
             </view>
         </view>
