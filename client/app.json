@@ -27,7 +27,10 @@
     "pages/source/issueList",
     "pages/source/issueDetail",
     "pages/agreement/license",
-    "pages/introduction/index"
+    "pages/introduction/index",
+    "pages/competition/index",
+    "pages/competition/detail",
+    "pages/competition/schedule"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,0 +1,35 @@
+<headerBar gradual="{{gradual}}" data="{{dataDetail}}"></headerBar>
+<view class="cu-bar bg-white solid-bottom ">
+    <view class='action'>
+        <text class='icon-titles text-orange '></text>
+        Today's course
+    </view>
+</view>
+<view class="cu-timeline " wx:for="{{courseList}}" wx:key>
+    <view class='cu-item  text-{{item.color}}'>
+        <view class="bg-gradual-{{item.color}}  content shadow-blur">
+            <view class="cu-capsule radius">
+                <view class="cu-tag bg-white text-{{item.color}}">{{item.room}}</view>
+                <view class="cu-tag line-white">{{item.time}}</view>
+            </view>
+            <view class='margin-top-sm text-content'>
+                <view class="flex justify-between">
+                    <view class=''>{{item.teacher}}:{{item.name}}</view>
+                    <view class=''>
+                        <text class='icon-subscription text-white '></text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="canui-foor-fixed bg-white {{TabbarBot=='y'?'canui-tabbar-bottom':''}}">
+    <view class="grid col-4 flex justify-end order-btn-box">
+        <view class='margin-tb-sm text-center'>
+            <button class='cu-btn round line-gray shadow' open-type="share">share</button>
+        </view>
+        <view class='margin-tb-sm text-center'>
+            <button class='cu-btn round line-red shadow'>Sign up</button>
+        </view>
+    </view>
+</view>

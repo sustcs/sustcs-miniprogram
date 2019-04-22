@@ -1,0 +1,16 @@
+<navigationBar isBack="{{true}}" gradual="{{gradual}}">
+    <view slot="backText"></view>
+    <view slot="content">{{title}}</view>
+</navigationBar>
+<view class="cu-timeline" wx:for="{{schedule}}" wx:key>
+    <view class="cu-time">{{item.time}}</view>
+    <view class="cu-item {{item.now==true?'text-blue':''}}">
+        <view class="content">
+            <view class="cu-capsule radius">
+                <view class="cu-tag bg-cyan">{{item.type}}</view>
+                <view class="cu-tag line-cyan">{{item.state}}</view>
+            </view>
+            <view class="margin-top">{{item.note}}</view>
+        </view>
+    </view>
+</view>

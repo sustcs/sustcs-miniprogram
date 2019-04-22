@@ -17,6 +17,10 @@ Component({
     caption: {
       type: String,
       default: ''
+    },
+    data: {
+      type: Object,
+      default: {}
     }
   },
 

@@ -46,7 +46,8 @@ Page({
         icon: "upstagefill",
         color: "olive",
         badge: 0,
-        name: "Competition"
+        name: "Competition",
+        url: "../competition/index"
       },
       {
         icon: "lightfill",
