@@ -1,5 +1,6 @@
 {
   "usingComponents": {
-    "headerBar": "../../components/colorui/header-bar"
+    "wemark": "../../components/wemark/wemark",
+    "my-icon": "../../components/icon/index"
   }
 }

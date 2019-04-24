@@ -30,7 +30,7 @@
     "pages/introduction/index",
     "pages/competition/index",
     "pages/competition/detail",
-    "pages/competition/schedule"
+    "pages/competition/teamList"
   ],
   "window": {
     "backgroundTextStyle": "light",

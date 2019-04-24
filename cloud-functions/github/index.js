@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
   });
   var options = {
     method: 'GET',
-    url: event.url,
+    url: encodeURI(event.url),
     headers: event.headers,
     json: true,
   };

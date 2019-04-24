@@ -1,8 +1,7 @@
 //index.js
 //获取应用实例
-const config = require('../../config');
+const { basic_url, repo_full_name, canFileType } = require('../../config');
 const app = getApp();
-const canFileType = ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf']
 Page({
     data: {
         pageConfig: {
@@ -18,26 +17,20 @@ Page({
         }
     },
 
-    onLoad: function (params) {
-        this.setData({
-            repo: params.repo,
-            path: params.path || null,
-            name: params.name || null
-        })
-        this.getContents()
+    onLoad: function (options) {
+        this.getContents(options.path)
     },
     hideModal(e) {
         this.setData({
             isDetail: false
         })
     },
-    getContents() {
+    getContents(path = '') {
         wx.showLoading({
             title: 'loading'
         })
         let that = this
-        const { repo, path } = this.data
-        let url = config.basic_url + repo + '/contents'
+        let url = basic_url + repo_full_name + '/contents'
         if (path) {
             url = url + '/' + path
         }
@@ -51,7 +44,6 @@ Page({
                 },
             },
             complete: res => {
-                console.log(res)
                 if (res.errMsg === 'cloud.callFunction:ok' && res.result !== null) {
                     that.setData({
                         dataList: res.result,
@@ -210,7 +202,7 @@ Page({
         var item = e.currentTarget.dataset.item;
         if (item.type === 'dir') {
             wx.navigateTo({
-                url: 'content?repo=' + this.data.repo + '&path=' + item.path + '&name=' + item.name
+                url: 'content?path=' + item.path
             })
         } else if (item.type === 'file') {
             var size_kb = item.size / 1024;

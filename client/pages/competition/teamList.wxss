@@ -1,0 +1,10 @@
+page{
+    padding-top: 100rpx;
+    background-color: white;
+  }
+  item.none{
+    display: none;
+  }
+  .radius{
+    border-radius:15rpx;
+  }

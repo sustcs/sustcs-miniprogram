@@ -39,7 +39,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 18,
+			"current": 20,
 			"list": [
 				{
 					"id": 0,
@@ -119,10 +119,10 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 11,
 					"name": "test",
 					"pathName": "pages/login/test",
-					"query": "",
+					"query": "path=competition/中文测试",
 					"scene": null
 				},
 				{
@@ -168,10 +168,24 @@
 					"scene": null
 				},
 				{
-					"id": -1,
+					"id": 18,
 					"name": "competition/detail",
 					"pathName": "pages/competition/detail",
+					"query": "competition=微信小程序应用开发赛",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "competition/schedule",
+					"pathName": "pages/competition/schedule",
 					"query": "url=https://api.github.com/repos/huangjianke/Gitter/issues/22",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "competition/teamList",
+					"pathName": "pages/competition/teamList",
+					"query": "competition=微信小程序应用开发赛",
 					"scene": null
 				}
 			]

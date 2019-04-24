@@ -42,5 +42,9 @@ Page({
   onLoad: function (options) {
 
   },
-
+  toChild: function (e) {
+    wx.navigateTo({
+      url: 'detail?competition=' + e.currentTarget.dataset.url,
+    })
+  }
 })

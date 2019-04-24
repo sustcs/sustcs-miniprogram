@@ -34,7 +34,6 @@ Component({
             }
 
             this.cos = new COS({
-
                 getAuthorization: function (options, callback) {
 
                     wx.request({
@@ -258,7 +257,7 @@ Component({
                                     currentValue.Type = 'md';
                                     break;
                                 default:
-                                    currentValue.Type = 'blank';
+                                    currentValue.Type = 'file';
                                     break;
                             }
                             //console.log(suffix + ':' + currentValue.Type);

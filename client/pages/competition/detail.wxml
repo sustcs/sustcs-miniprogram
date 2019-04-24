@@ -1,35 +1,181 @@
-<headerBar gradual="{{gradual}}" data="{{dataDetail}}"></headerBar>
-<view class="cu-bar bg-white solid-bottom ">
-    <view class='action'>
-        <text class='icon-titles text-orange '></text>
-        Today's course
+<scroll-view scroll-y class="scrollPage">
+    <!-- <image src='https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' mode='widthFix' class='png' style='width:100%;height:486rpx'></image> -->
+    <view class='cu-custom'>
+        <view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+            <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+                <text class='icon-back'></text>
+                返回
+            </navigator>
+            <view class='content' style='top:{{StatusBar}}px;'></view>
+        </view>
     </view>
-</view>
-<view class="cu-timeline " wx:for="{{courseList}}" wx:key>
-    <view class='cu-item  text-{{item.color}}'>
-        <view class="bg-gradual-{{item.color}}  content shadow-blur">
-            <view class="cu-capsule radius">
-                <view class="cu-tag bg-white text-{{item.color}}">{{item.room}}</view>
-                <view class="cu-tag line-white">{{item.time}}</view>
+    <view class="bg-img bg-mask padding-tb-xl" style="background-image: url('https://res.wx.qq.com/community/dist/images/home_img_miniprogarmdevelopmentguides_2x_22399a.png');height: 400rpx;">
+        <view class="padding-xl margin-top-xl text-white text-center">
+            <view class="padding-top-xl margin-top-sm text-xl">{{dataDetail.title}}</view>
+            <view class="padding-xs">{{dataDetail.description}}</view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white solid-bottom">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            Introduction
+        </view>
+        <!-- <view class="action" bindtap="">
+            <text class='icon-more text-orange'></text>
+        </view> -->
+    </view>
+    <view class="text-left padding bg-white">{{dataDetail.introduction}}</view>
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            Entry requirements
+        </view>
+        <!-- <view class="action" bindtap="">
+            <text class='icon-more text-orange'></text>
+        </view> -->
+    </view>
+    <view class="text-left padding bg-white">{{dataDetail.requirements}}</view>
+    <view class="cu-bar bg-white solid-bottom  margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            schedule
+        </view>
+        <view class="action" bindtap="showModal" data-target="scheduleDetail">
+            <text class='icon-more text-orange'></text>
+        </view>
+    </view>
+    <scroll-view scroll-x class="bg-white padding response cu-steps steps-bottom" scroll-into-view="scroll-{{scroll}}" scroll-with-animation>
+        <view class="cu-item {{index>scroll?'':'text-purple'}} padding-lr-xl" wx:for="{{dataDetail.scheduleDetail}}" wx:key id="scroll-{{index}}">
+            {{item.type}}
+            <text class="num" data-index="{{index + 1}}"></text>
+        </view>
+    </scroll-view>
+    <view class="cu-modal bottom-modal {{modalName === 'scheduleDetail'?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white">
+                <view class="action text-green">{{dataDetail.title}} schedule</view>
+                <view class="action text-blue" bindtap="hideModal">
+                    <text class='icon-close text-red'></text>
+                </view>
             </view>
-            <view class='margin-top-sm text-content'>
-                <view class="flex justify-between">
-                    <view class=''>{{item.teacher}}:{{item.name}}</view>
-                    <view class=''>
-                        <text class='icon-subscription text-white '></text>
+            <scroll-view scroll-y class="schedule">
+                <view class="cu-timeline text-left" wx:for="{{dataDetail.scheduleDetail}}" wx:key>
+                    <view class="cu-time">{{item.time}}</view>
+                    <view class="cu-item {{item.now==true?'text-blue':''}}">
+                        <view class="content">
+                            <view class="cu-capsule radius">
+                                <view class="cu-tag bg-cyan">{{item.type}}</view>
+                                <view class="cu-tag line-cyan">{{item.state}}</view>
+                            </view>
+                            <view class="margin-top">{{item.note}}</view>
+                        </view>
+                    </view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            resource
+        </view>
+        <view class="action" bindtap="more" data-url="../source/content?path={{path}}">
+            <text class='icon-more text-orange'></text>
+        </view>
+    </view>
+    <view class="cu-list grid col-4 no-border">
+        <view class="cu-item" wx:for="{{resourceList}}" wx:key wx:if="{{index<4}}" bindtap="showModal" data-target="fileDetail" data-item="{{item}}">
+            <my-icon name="{{item.fileType}}" class="icon" />
+            <text>{{item.name}}</text>
+        </view>
+    </view>
+    <view class="cu-modal bottom-modal {{modalName === 'fileDetail'?'show':''}}">
+        <view class="cu-dialog">
+            <view class="cu-bar bg-white">
+                <view class="action text-grey">{{fileDetail.name}}</view>
+                <view class="action text-blue" bindtap="hideModal">
+                    <text class="icon-close "></text>
+                </view>
+            </view>
+            <view class="cu-list menu sm-border card-menu text-left">
+                <view class="cu-item ">
+                    <view class="content">
+                        <text class="text-grey">FileSize:</text>
+                        <text>{{fileDetail.size}}</text>
+                    </view>
+                    <view class="action text-xl">
+                        <text class="icon-down padding" bindtap="download" data-url="{{fileDetail.download_url}}" data-size="{{fileDetail.size}}"></text>
+                        <text class="icon-forward padding" bindtap="forward" data-url="{{fileDetail.download_url}}"></text>
+                        <text class="icon-attention padding" bindtap="preview" data-url="{{fileDetail.download_url}}" data-size="{{fileDetail.size}}" data-name="{{fileDetail.name}}"></text>
                     </view>
                 </view>
             </view>
         </view>
     </view>
-</view>
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            award
+        </view>
+        <!-- <view class="action" bindtap="">
+            <text class='icon-more text-orange'></text>
+        </view> -->
+    </view>
+    <view class="text-left padding bg-white">{{dataDetail.award}}</view>
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            join team
+        </view>
+        <view class="action" bindtap="more" data-url="teamList?competition={{dataDetail.title}}">
+            <text class='icon-more text-orange'></text>
+        </view>
+    </view>
+    <view class="cu-list menu sm-border">
+        <view class="cu-item" wx:for="{{3}}" wx:key>
+            <view class="action">
+                <view class="cu-avatar-group">
+                    <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10004.jpg);"></view>
+                    <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10003.jpg);"></view>
+                    <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10002.jpg);"></view>
+                    <view class="cu-avatar round sm" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10001.jpg);"></view>
+                </view>
+                <text class="text-grey text-sm">Houston Rockets</text>
+            </view>
+            <view class="action">
+                <button class="cu-btn round bg-green shadow">join</button>
+            </view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white solid-bottom  margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            contact
+        </view>
+        <!-- <view class="action" bindtap="">
+            <text class='icon-more text-orange'></text>
+        </view> -->
+    </view>
+    <view class="text-left padding bg-white">{{dataDetail.contact}}</view>
+    <view class="cu-bar bg-white solid-bottom margin-top">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            comment strategy
+        </view>
+        <!-- <view class="action" bindtap="">
+            <text class='icon-more text-orange'></text>
+        </view> -->
+    </view>
+    <view class="text-left padding margin-bottom-xl bg-white">{{dataDetail.contact}}</view>
+    <view class="margin-tb-xl padding-top-xl"></view>
+</scroll-view>
 <view class="canui-foor-fixed bg-white {{TabbarBot=='y'?'canui-tabbar-bottom':''}}">
-    <view class="grid col-4 flex justify-end order-btn-box">
+    <view class="grid col-4 flex justify-end order-btn-box padding-lr">
         <view class='margin-tb-sm text-center'>
-            <button class='cu-btn round line-gray shadow' open-type="share">share</button>
+            <button class='cu-btn round bg-share shadow' open-type="share">Share</button>
         </view>
         <view class='margin-tb-sm text-center'>
-            <button class='cu-btn round line-red shadow'>Sign up</button>
+            <button class='cu-btn round bg-red shadow'>participate</button>
         </view>
     </view>
 </view>
