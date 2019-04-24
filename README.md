@@ -297,7 +297,7 @@
 - ## 2019-4-16 
   完成github接口完善
   [渐变配色](https://webkul.github.io/coolhue/)
-  - [x] share、pulldown
+  - [x] share、pulldown、search
   - [x] 模态框侧边抽屉顶部遮罩
   - [x] 顶部cu-costom
 
@@ -326,7 +326,7 @@
   - 个人页
     - 参赛经历
     - 擅长角色
-    - 组队情况
+    - 发起的队伍
   小程序内部业务可以通过云开发数据库实现，尽可能业务在小程序端直接数据更新
 
 - ## 2019-4-22
@@ -338,3 +338,16 @@
   自定义图标乱码 https://www.yuque.com/colorui/column/kpeid8
   水平滚动
   搜索，异步筛选 | 数据库搜索
+- ## 2019-4-24
+  背景虚化导致子节点图片虚化
+  小程序图表
+  - [wx-charts](https://github.com/xiaolin3303/wx-charts)
+    需要roll-up编译
+  - [ECharts](https://github.com/ecomfe/echarts-for-weixin)
+
+  - [f2](https://github.com/antvis/wx-f2)
+    需要npm支持
+
+  组队
+  - 建立社交
+  - 组队报名

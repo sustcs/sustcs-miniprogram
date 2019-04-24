@@ -113,6 +113,13 @@ Page({
       this.setData({
         note: e.currentTarget.dataset.item.note
       })
+    } else {
+      wx.navigateTo({
+        url: e.currentTarget.dataset.target,
+        success: (result) => {
+
+        },
+      });
     }
   },
   hideModal(e) {

@@ -1,10 +1,13 @@
 // pages/competition/index.js
+const app = getApp()
 Page({
 
   /**
    * Page initial data
    */
   data: {
+    CustomBar: app.globalData.CustomBar,
+    gradual: ['#39b54a', '#8dc63f'],
     list: [{
       title: '2019 -- 中国高校计算机大赛',
       img: 'https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',

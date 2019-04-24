@@ -1,0 +1,89 @@
+<scroll-view scroll-y class="scrollPage">
+    <!-- <image src='https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940' mode='widthFix' class='png' style='width:100%;height:486rpx'></image> -->
+    <view class='cu-custom'>
+        <view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+            <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+                <text class='icon-back'></text>
+                返回
+            </navigator>
+            <view class='content' style='top:{{StatusBar}}px;'></view>
+        </view>
+    </view>
+    <view class="bg-img bg-mask padding-tb-xl" style="background-image: url({{avatar}});height: 400rpx;">
+        <view class="padding-xl margin-top-xl text-white text-center">
+            <image class="cu-avatar lg round" src="{{avatar}}" />
+            <!-- <view class="cu-avatar lg round" style="background-image:url(https://img.xiaopiu.com/userImages/img9156799f8280.png);"></view> -->
+            <view class="padding-top">{{username}}</view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white solid-bottom">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            Participating experience
+        </view>
+        <!-- <view class="action" bindtap="">
+            <text class='icon-more text-orange'></text>
+        </view> -->
+    </view>
+    <view class="text-center padding bg-white">
+        <view class="cu-timeline text-left" wx:for="{{experience}}" wx:key>
+            <!-- <view class="cu-time">{{item.time}}</view>
+            <view class="cu-item ">
+                <view class="cu-capsule radius">
+                    <view class="cu-tag bg-cyan">{{item.name}}</view>
+                    <view class="cu-tag line-cyan">{{item.role}}</view>
+                </view>
+            </view> -->
+            <view class="cu-item cur text-blue">
+                <view class="content bg-green shadow-blur">
+                    <text>{{item.time}}</text>
+                    【{{item.name}}】{{item.role}}
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white margin-top solid-bottom">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            Current state
+        </view>
+        <!-- <view class="action" bindtap="">
+            <text class='icon-more text-orange'></text>
+        </view> -->
+    </view>
+    <view class="cu-list menu-avatar comment">
+        <view class="cu-item">
+            <view class="cu-avatar round" style="background-image:url({{avatar}});"></view>
+            <view class="content">
+                <view class="flex justify-between">
+                    <view class="text-lg">I {{state.action}} a team</view>
+                    <view class="text-gray text-df">{{state.time}}</view>
+                </view>
+                <view class="text-gray text-content text-df">"{{state.team}}"</view>
+                <navigator class="cu-item radius margin-top-sm  bg-img shadow-blur bg-mask" style="background-image:url({{state.competition.poster}})" url='detail?competition={{user.state.competition.title}}'>
+                    <view class="padding-xl text-white">
+                        <view class="padding-xs text-lg">{{state.competition.title}}</view>
+                        <view class="padding-xs">{{state.competition.description}}</view>
+                    </view>
+                </navigator>
+            </view>
+        </view>
+    </view>
+    <view class="cu-bar bg-white margin-top solid-bottom">
+        <view class='action'>
+            <text class='icon-titles text-orange '></text>
+            The characteristics of evaluation
+        </view>
+        <view class='action'>
+            <text class='icon-edit text-grey '></text>
+        </view>
+    </view>
+    <view class="text-center padding bg-white">
+        <canvas canvas-id="radarCanvas" class="canvas"></canvas>
+        <view>
+            <button class="margin-xl cu-btn block round line-black">
+                Generate my business card
+            </button>
+        </view>
+    </view>
+</scroll-view>

@@ -1,3 +1,6 @@
+page{
+  padding-top: 100rpx;
+}
 .Title{
   transform: skew(-10deg, 0deg);
 position: relative;

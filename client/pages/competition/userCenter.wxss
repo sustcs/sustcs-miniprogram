@@ -1,0 +1,5 @@
+/* pages/competition/userCenter.wxss */
+.canvas {
+    width: 100%;
+    height: 400rpx;
+}

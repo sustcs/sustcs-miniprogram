@@ -161,8 +161,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "competition/index",
+					"id": 17,
+					"name": "competition",
 					"pathName": "pages/competition/index",
 					"query": "url=https://api.github.com/repos/huangjianke/Gitter/issues/22",
 					"scene": null
@@ -176,16 +176,16 @@
 				},
 				{
 					"id": -1,
-					"name": "competition/schedule",
-					"pathName": "pages/competition/schedule",
-					"query": "url=https://api.github.com/repos/huangjianke/Gitter/issues/22",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "competition/teamList",
 					"pathName": "pages/competition/teamList",
 					"query": "competition=微信小程序应用开发赛",
+					"scene": null
+				},
+				{
+					"id": 20,
+					"name": "competition/userCenter",
+					"pathName": "pages/competition/userCenter",
+					"query": "username=Jack",
 					"scene": null
 				}
 			]

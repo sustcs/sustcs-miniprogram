@@ -1,11 +1,18 @@
-<navigationBar bgColor="bg-gradual-green" isBack="{{true}}">
+<navigationBar gradual="{{gradual}}" isBack="{{true}}">
     <view slot="backText"></view>
     <view slot="content">Competition</view>
 </navigationBar>
-<view class="cu-bar bg-white">
-    <view class="action">
-        <text class="icon-title text-blue"></text>
-        recently
+<view class="cu-bar search fixed" style="top:{{CustomBar}}px;background-image:linear-gradient(90deg, {{gradual}});">
+    <navigator url='userCenter?username=jack' class="cu-avatar round" style="background-image:url(https://image.weilanwl.com/img/square-2.jpg);">
+        <view class="cu-tag badge">5</view>
+    </navigator>
+    <view class="search-form round">
+        <text class="icon-search"></text>
+        <input type="text" placeholder="" confirm-type="search"></input>
+    </view>
+    <view class="action text-white">
+        <text>Filter</text>
+        <text class="icon-triangledownfill"></text>
     </view>
 </view>
 <scroll-view scroll-y class="scrollPage">
