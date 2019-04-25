@@ -60,7 +60,7 @@
                     <view class="text-gray text-df">{{state.time}}</view>
                 </view>
                 <view class="text-gray text-content text-df">"{{state.team}}"</view>
-                <navigator class="cu-item radius margin-top-sm  bg-img shadow-blur bg-mask" style="background-image:url({{state.competition.poster}})" url='detail?competition={{user.state.competition.title}}'>
+                <navigator class="cu-item radius margin-top-sm  bg-img shadow-blur bg-mask" style="background-image:url({{state.competition.poster}})" url='detail?competition={{state.competition.title}}'>
                     <view class="padding-xl text-white">
                         <view class="padding-xs text-lg">{{state.competition.title}}</view>
                         <view class="padding-xs">{{state.competition.description}}</view>

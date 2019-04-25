@@ -31,7 +31,8 @@
     "pages/competition/index",
     "pages/competition/detail",
     "pages/competition/teamList",
-    "pages/competition/userCenter"
+    "pages/competition/userCenter",
+    "pages/test/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
