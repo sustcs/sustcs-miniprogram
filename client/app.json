@@ -32,7 +32,9 @@
     "pages/competition/detail",
     "pages/competition/teamList",
     "pages/competition/userCenter",
-    "pages/test/index"
+    "pages/test/index",
+    "pages/test/list",
+    "pages/test/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -356,10 +356,45 @@
 
   问卷解决方案
   - [问卷网开放接口](https://www.wenjuan.com/open/v3)
-  需要申请
+  需要申请,且只能创建问卷，不能在小程序端收集数据
   - [金数据插件](https://jinshuju.net/features/miniapp)
   都是直接拉取后台题库，需要在后台先建立起来题库
   - 外链其他小程序
   
   需要支持本地创建，也能扫码登录管理后台创建，数据同步
   组件已删除，仍会报更新？
+- ## 2019-4-25
+  问卷需求分析
+  - 项目形态
+    - 小程序端
+    - 网页端
+
+    为了便于同步，做同一创建接口，
+    扫码登录：网页生成二维码，用户使用微信(小程序)扫码,->授权登录?->确认登录，将此用户身份信息发至服务端，服务端获取后下发引导跳转？监听登录
+    网页生成带参数（标识客户端）的二维码，![可以是普通二维码，通过小程序扫码](https://img-blog.csdnimg.cn/20181128142122525.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NmZHhubA==,size_16,color_FFFFFF,t_70)
+
+    ![也可以直接是小程序二维码，通过微信扫码](https://mmbiz.qpic.cn/mmbiz_png/T81bAV0NNN8dDeSj6yrkZS2Q3Ut2RppibibkKuNliaQribVFYvt0qKplUaoYKFibBbZ3icn3nR3tD9icQAIuL8p1FE1MA/0?wx_fmt=png)
+    参数：用户、网页客户端
+    解决方案：https://authing.cn/
+  # 参考
+  <small>
+  [1] 大转转FE.微信小程序使用场景延伸：扫码登录、扫码支付.https://blog.csdn.net/P6P7qsW6ua47A2Sb/article/details/78892430 [EB/OL] .2017
+
+  [2] 成盒落地98k.实现微信小程序扫码，在PC端登陆并且自动跳转页面.https://blog.csdn.net/cfdxnl/article/details/84583913 [EB/OL].2018
+  </small>
+
+
+  - 项目流程
+    - 基础编辑
+      - 标题、介绍（banner）
+      - 设置: 实名||匿名、
+      - 题目: 
+        - 选择： 单选||多选（下拉）
+        - 填空： 单行||文本框
+        - 评分： 数字步进||评分组件
+      创建时本地缓存，
+    - 发布
+      - 小程序码海报
+      - 转发
+    - 统计
+    

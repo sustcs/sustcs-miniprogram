@@ -187,6 +187,12 @@
 					"pathName": "pages/competition/userCenter",
 					"query": "username=Jack",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "test",
+					"pathName": "pages/test/index",
+					"scene": null
 				}
 			]
 		}
