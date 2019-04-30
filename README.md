@@ -356,45 +356,388 @@
 
   问卷解决方案
   - [问卷网开放接口](https://www.wenjuan.com/open/v3)
-  需要申请,且只能创建问卷，不能在小程序端收集数据
+  需要申请
   - [金数据插件](https://jinshuju.net/features/miniapp)
   都是直接拉取后台题库，需要在后台先建立起来题库
   - 外链其他小程序
   
   需要支持本地创建，也能扫码登录管理后台创建，数据同步
   组件已删除，仍会报更新？
-- ## 2019-4-25
-  问卷需求分析
-  - 项目形态
-    - 小程序端
-    - 网页端
 
-    为了便于同步，做同一创建接口，
-    扫码登录：网页生成二维码，用户使用微信(小程序)扫码,->授权登录?->确认登录，将此用户身份信息发至服务端，服务端获取后下发引导跳转？监听登录
-    网页生成带参数（标识客户端）的二维码，![可以是普通二维码，通过小程序扫码](https://img-blog.csdnimg.cn/20181128142122525.jpg?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2NmZHhubA==,size_16,color_FFFFFF,t_70)
+- # 2019-4-26
+  node [notebook](https://runkit.com)
+  terminal [browser](http://www.w3m.org/)
 
-    ![也可以直接是小程序二维码，通过微信扫码](https://mmbiz.qpic.cn/mmbiz_png/T81bAV0NNN8dDeSj6yrkZS2Q3Ut2RppibibkKuNliaQribVFYvt0qKplUaoYKFibBbZ3icn3nR3tD9icQAIuL8p1FE1MA/0?wx_fmt=png)
-    参数：用户、网页客户端
-    解决方案：https://authing.cn/
-  # 参考
-  <small>
-  [1] 大转转FE.微信小程序使用场景延伸：扫码登录、扫码支付.https://blog.csdn.net/P6P7qsW6ua47A2Sb/article/details/78892430 [EB/OL] .2017
+//add
+node('http') => express => koa => egg
+# init
+```sh
+cnpm init egg --type=simple
+# test
+npm run dev
+curl 127.0.0.1
+hi egg
+```
+## Directory Structure
+```js
+eggjs-learn
+├── app
+│   ├── controller
+│   │   └── home.js
+│   └── router.js
+├── config
+│   └── config.default.js
+└── package.json
+```
+# get Request
+```js
+// app/router.js
+router.resources("main","/api/main",controller.main); // add
+// app/controller/main.js
+'use strict';
+const Controller = require('egg').Controller;
+class MainController extends Controller  {
+    async show(){
+        let {id} = this.ctx.params;
+        let {name} = this.ctx.query;
+        let options = {
+            id: id,
+            name: name
+        };
+        let info = await this.ctx.service.main.getInfo(options);
+        this.ctx.body = {
+            code: 0,
+            data: info
+        };
+        this.ctx.status = 200;
 
-  [2] 成盒落地98k.实现微信小程序扫码，在PC端登陆并且自动跳转页面.https://blog.csdn.net/cfdxnl/article/details/84583913 [EB/OL].2018
-  </small>
+    }
+}
+module.exports = MainController;
+// app/service/main.js
+'use strict';
+const Service =  require('egg').Service;
+class MainService extends Service {
+    async getInfo(options) {
+        options.height = 180;
+        options.age = 20;
+        return options;
+    }
+}
+module.exports = MainService;
+```
+## Directory Structure
+```js
+eggjs-learn
+├── app
+│   ├── controller
+│   │   ├── home.js
+|   |   ├── main.js
+|   ├── service
+|   |   ├── main.js
+│   └── router.js
+├── config
+│   └── config.default.js
+└── package.json
+```
+## test
+```sh
+curl 127.0.0.1:7001/api/main/123?name=mike
+```
 
+# architecture
+![](https://upload-images.jianshu.io/upload_images/1214547-b9957d0c16c8d204.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
 
-  - 项目流程
-    - 基础编辑
-      - 标题、介绍（banner）
-      - 设置: 实名||匿名、
-      - 题目: 
-        - 选择： 单选||多选（下拉）
-        - 填空： 单行||文本框
-        - 评分： 数字步进||评分组件
-      创建时本地缓存，
-    - 发布
-      - 小程序码海报
-      - 转发
-    - 统计
-    
+## Reference 
+<small>
+[1] AmazingBillions.egg.js使用指南.https://www.jianshu.com/p/6b04330ee4a1 [EB/OL].2018
+</small>
+
+# user API
+## signup API
+### api
+| api | /api/v1/signup |
+|--|--|
+|type|post|
+|params|{ ``userName``: String, ``userPass``: String }|
+|code| `1`:success; `0`: error; `-1` : failed|
+|data| { `_id`:, `userName`: `token`:}|
+### implement
+install
+```sh
+cnpm install egg-mongoose egg-validate --save
+service mongod start
+mongo
+use apiExample
+```
+construct
+```js
+// app/controller/user.js
+// app/service/user.js
+// app/model/user.js
+```
+config
+```js
+// app/router.js
+router.post('/api/v1/signup', controller.user.signup);
+// config/config.default.js
+config.pwd_salt = 'egg-api-salt';
+config.middleware = [
+  'errorHandler',
+];
+config.mongoose = {
+  url: 'mongodb://127.0.0.1/apiExample',
+  options: {},
+};
+config.security = {
+  csrf: {
+      enable: false,
+      ignoreJSON: false,
+    },
+};
+// config/plugin.js
+exports.mongoose = {
+  enable: true,
+  package: 'egg-mongoose'
+};
+exports.validate = {
+  enable: true,
+  package: 'egg-validate',
+};
+```
+front page
+1. static url
+``vue`` | ``axios`` |　``elementui``
+```js
+public
+├── examples
+│   ├── lib
+|   ├── user
+|   |   └── signup.html
+```
+2. route
+config
+```sh
+cnpm i egg-view-pug --save
+# app/router.js
+router.get('/signup', controller.home.signup);
+# config/config.default.js
+config.view = {
+  defaultViewEngine: 'pug',
+  mapping: {
+      '.pug': 'pug'
+    }
+};
+# config/plugin.js
+exports.pug = {
+  enable: true,
+  package: 'egg-view-pug'
+}
+```
+implement
+```js
+
+// app/controller/home.js
+async signup() {
+    const { ctx } = this;
+    await ctx.render('user/signup.pug');
+}
+// view
+view
+├── user
+│   └── signup.pug
+```
+## Reference
+<small>
+[1] levinhax.Egg.js搭建后台服务API.https://segmentfault.com/a/1190000015767772 [EB/OL].2018
+</small>
+
+# Passport
+## github
+### specification
+OAuth Apps
+### implement
+install
+```sh
+cnpm i --save egg-passport egg-passport-github
+```
+construct
+```js
+// app/controller/home.js
+async render() 
+// app/controller/user.js
+async logout() {
+    const {ctx} = this;
+    ctx.logout();
+    ctx.redirect(ctx.get('referer') || '/');
+}
+```
+config
+
+create a [OAuth Apps](https://github.com/settings/developers),
+
+|Homepage URL|http://127.0.0.1:7001|
+|--|--|
+|Authorization callback URL|http://127.0.0.1:7001/passport/github/callback|
+|Client ID||
+|Client Secret||
+```js
+// config/config.default.js
+config.passportGithub = {
+  key: '',
+  secret: '',
+};
+// plugin.js
+module.exports.passport = {
+  enable: true,
+  package: 'egg-passport',
+};
+
+module.exports.passportGithub = {
+  enable: true,
+  package: 'egg-passport-github',
+};
+// app/router.js
+const { router, controller, passport } = app;
+passport.mount('github');
+router.get('/',controller.home.render);
+router.get('/user',controller.home.render);
+router.get('/logout', controller.user.logout);
+```
+## Reference
+<small>
+[1] egg.Egg.js教程－Passport鉴权.https://eggjs.org/zh-cn/tutorials/passport.html [EB/OL].2018
+
+[2] eggjs.egg-passport example.https://github.com/eggjs/examples/tree/master/passport [EB/OL].2017
+</small>
+
+# egg react easy-webpack
+## start
+### implement
+install 
+```sh
+cnpm i react react-dom axios egg-view-react-ssr egg-scripts --save
+cnpm i egg-bin cross-env easywebpack-cli easywebpack-react egg-webpack egg-webpack-react --save-dev
+cnpm i
+cnpm i babel-core babel-loader  --save-dev
+cnpm i babel-preset-env babel-plugin-syntax-dynamic-import babel-plugin-transform-object-assign babel-plugin-transform-object-rest-spread --save-dev
+cnpm i autoprefixer  --save-dev
+```
+config
+```js
+// config/config.default.js
+config.static = {
+  prefix: '/public/',
+  dir: path.join(appInfo.baseDir, 'public')
+};
+config.reactssr = {
+  renderOptions: {
+    baseDir: path.join(appInfo.baseDir, 'app/view')
+  }
+};
+// config/plugin.js
+exports.reactssr = {
+  enable: true,
+  package: 'egg-view-react-ssr'
+};
+// app/router.js
+router.get('/', controller.home.server);
+router.get('/client', controller.home.client);
+// config/plugin.local.js
+// .babelrc
+// .gitignore
+// webpack.config.js
+// app/view/.gitkeep
+```
+construct
+```js
+// app/controller/home.js
+async server() {
+  const {ctx} = this;
+  await ctx.render('home/index.js', {
+    message: 'egg reactserver side render'
+  });
+}
+async client() {
+  const {ctx} = this;
+  await ctx.renderClient('home/index.js', {
+    message: 'egg react client render'
+  });
+}
+// app/web
+web
+├── assert
+│   ├── css
+|   ├── immages
+├── component
+│   ├── header
+│   ├── layout.jsx
+├── page
+│   ├── home
+|   |   ├──components
+|   |   ├──index.css
+|   |   ├──index.jsx
+├── view
+│   └── layout.html
+```
+### error
+1. read webpack memory file[/home/jerry/work/eggjs/eggjs-learn/app/view/home/index.js] content is empty, please check if the file exists
+repetition
+```sh
+npm run dev
+```
+2. build script error code ELIFECYCLE
+repetition
+```sh
+npm run build
+```
+3. Internal Server Error
+repetition
+```sh
+npm start
+```
+## Reference
+<small>
+[1] easy-team.Egg + React 工程化解决方案-开发指南－从零开始.https://www.yuque.com/easy-team/egg-react/start [EB/OL].2018
+</small>
+
+[JSDC 2017 - R101#D201 Egg & Node js 從小工坊走向企業級開發 By 天豬](https://www.youtube.com/watch?v=H-YE7zot_f4&list=PL8dIIwCMF-SMVbO-722LJEeQXY5eGzItQ&index=27&t=0s)
+
+[NodeParty Hangzhou EggJS](https://www.youtube.com/watch?v=dm1kYrpQTjk)
+
+[NingJS · egg - 企业级 node 框架，天猪 from Alibaba - Nanjing September 2016](https://www.youtube.com/watch?v=ssxqw4r_bKI)
+
+# how to use
+> Apr 29
+
+[nextjs](https://nestjs.com/)
+## error
+- This is Privoxy 3.0.24 on localhost (127.0.0.1), port 8118, enabled
+  https://learning.getpostman.com/docs/postman/sending_api_requests/proxy/
+- {}
+- mongod: unrecognized service
+```sh
+cd /data/my_project
+cd logs && touch mongod.log
+cp /etc/mongod.conf /data/my_project
+vim  /data/my_project/mongod.conf
+# /data/my_project/mongod.conf
+dbPath: /data/my_project
+path: /data/my_projec/logs/mongod.log
+mongod --fork --config /data/my_project/mongod.conf
+mongo
+```
+
+```js
+// app/service/home.js
+async findHot()
+{}
+findHot()
+{[...]}
+```
+eggjs只负责接口响应，前后端分离，请求另做
+## Reference
+<small>
+[1] bluebrid.Egg.js 源码分析-项目启动.https://juejin.im/post/5be92cc95188251fd925d49b [EB/OL].2018
+[2] HiFi不二.安装mongodb与常见操作指南.https://www.jianshu.com/p/9a6a9dae59fe [EB/OL].2017
+</small> 
