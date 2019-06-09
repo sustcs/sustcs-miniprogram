@@ -1,0 +1,33 @@
+<navigationBar bgColor="bg-black" isBack="{{true}}">
+    <view slot="backText"></view>
+    <view slot="content">{{team.name}}</view>
+</navigationBar>
+<view class="cu-chat" wx:for="{{messages}}" wx:for-item="message" wx:key="id" id="{{message.id}}">
+  <view wx:if="{{message.type == 'speak'}}">
+    <view wx:if="{{message.isMe}}" class='cu-item self'>
+      <view class="main">
+        <view class="content bg-green shadow">
+          <text>{{message.content}}</text>
+        </view>
+      </view>
+      <view class="cu-avatar text-cut radius lg " style="width:80rpx;background-color:{{message.color}}">{{message.user}}</view>
+      <view class="date"><text class="icon-{{isSend? 'roundcheckfill text-green': 'warnfill text-red'}}"></text>{{message.time}}</view>
+    </view>
+    <view wx:else class='cu-item'>
+      <view class="cu-avatar text-cut radius lg " style="width:80rpx;background-color:{{message.color}}">{{message.user}}</view>
+      <view class="main">
+        <view class="content shadow">
+          <text>{{message.content}}</text>
+        </view>
+      </view>
+      <view class="date"><text class="icon-roundcheckfill text-green"></text>{{message.time}}</view>
+      <!-- <view class="date">{{message.time}}</view> -->
+    </view>
+  </view>
+  <view wx:elif="{{message.type == 'system'}}" class="cu-info align-center">{{message.content}}</view>
+</view>
+
+<view class="cu-bar foot input" style="bottom:{{InputBottom}}px">
+  <input type="text" value="{{inputContent}}" bindchange="changeInputContent"  class="solid-bottom"confirm-type="send" confirm-hold="true" bindconfirm="sendMessage" maxlength="300" cursor-spacing="10" placeholder='press enter to send'></input>
+  <!-- <button class="cu-btn bg-green shadow">发送</button> -->
+</view>

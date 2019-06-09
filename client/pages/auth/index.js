@@ -1,63 +1,67 @@
-//index.js
-//获取应用实例
-const app = getApp();
-
+// pages/auth/auth.js
+const io = require('../../utils/weapp.socket.io.js');
+const { debug } = require('../../utils/common.js');
+const { serverUrl } = require('../../config');
+let app = getApp();
+const isDebug = app.globalData.isDebug;
 Page({
-  data: {
-    StatusBar: app.globalData.StatusBar,
-    CustomBar: app.globalData.CustomBar
+  onLoad: function (options) {
+    this.setData({
+      domain: options.domain,
+      action: options.action,
+      // userInfo: {
+      //   openid: res.result.openid,
+      // }
+    });
   },
+  data: {
+    auth: {
+      statusCode: 100,
+    }
+  },
+  onUnload() {
 
-  onLoad: function() {},
-  weChat: function() {
-    wx.login({
-      success(res) {
-        // wx.showToast({
-        //   title: res.errMsg,
-        //   icon: "success",
-        //   duration: 2000
-        // });
-        if (res.code) {
-          // 发起网络请求
-          wx.request({
-            url: "https://dtofih-80-gpedqh.dev.ide.live/login",
-            data: {
-              code: res.code
-            },
-            method: "GET",
-            success: function(res) {
-              var session_data = res.data.session_data;
-              var session_id = session_data.session_id;
-              var expires = session_data.expires;
-              var data = session_data.data;
-              wx.setStorageSync("session_id", session_id);
-            }
-          });
-        } else {
-          console.log("登录失败！" + res.errMsg);
+  },
+  authorize: function (e) {
+    const { errMsg, userInfo } = e.detail;
+    let that = this;
+    if (errMsg === 'getUserInfo:fail auth deny') {
+      setTimeout(function () {
+        wx.navigateBack({
+          delta: 2
+        })
+      }, 1000);
+      this.setData({
+        auth: {
+          statusCode: 202,
+          msg: 'Rejected'
         }
-      },
-      fail(res) {
-        wx.showModal({
-          title: "err",
-          content: res.errMsg
-        });
+      });
+    } else if (errMsg === 'getUserInfo:ok'){
+      setTimeout(function () {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 1000);
+      this.setData({
+        auth: {
+          statusCode: 200,
+          msg: 'Welcome ' + userInfo.nickName
+        }
+      });
+    }
+  },
+  reject: function () {
+    setTimeout(function () {
+      wx.navigateBack({
+        delta: 2
+      })
+    }, 1000);
+    this.setData({
+      auth: {
+        statusCode: 202,
+        msg: 'Rejected'
       }
     });
   },
-  testCloud: function() {
-    wx.cloud.callFunction({
-      // 云函数名称
-      name: "add",
-      // 传给云函数的参数
-      data: {
-        a: 1,
-        b: 2
-      },
-      success(res) {
-        console.log(res.result); // 3
-      },
-      fail: console.error
-    });
-  }
-});
+})

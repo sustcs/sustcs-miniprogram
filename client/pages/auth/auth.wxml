@@ -1,0 +1,27 @@
+<!-- index.wxml -->
+<navigationBar bgColor="bg-green" isBack="{{true}}">
+    <view slot="backText"></view>
+    <view slot="content">Auth</view>
+</navigationBar>
+<view class="bg-white padding-lr">
+  <view class="padding flex align-center">
+    <view class="flex-sub text-center">
+      <view class="text-xsl padding margin-top">
+        <text wx:if="{{auth.statusCode === 100}}" class="icon-timefill text-blue"></text>
+        <text wx:elif="{{auth.statusCode === 200}}" class="icon-roundcheckfill text-green"></text>
+        <text wx:else class="icon-roundclosefill text-red"></text>
+      </view>
+      <view class="padding">Do you allow the following applications to use your information for {{action}} ?</view>
+      <view class="bg-grey padding-tb radius text-center light">
+        <view class="text">{{domain}}</view>
+      </view>
+    </view>
+  </view>
+  <view wx:if="{{auth.statusCode == 100}}" class="padding flex flex-direction">
+    <button class='cu-btn bg-green lg' bindtap="authorize">Authorize</button>
+    <button class='cu-btn bg-grey margin-tb-sm lg' bindtap="reject">Reject</button>
+  </view>
+  <view wx:else class="padding flex flex-direction">
+    <view class="text text-center"> {{auth.msg}}</view>
+  </view>
+</view>

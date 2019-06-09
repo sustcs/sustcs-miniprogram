@@ -11,3 +11,9 @@
     height: 328rpx;
     border-radius:0 0 100rpx 100rpx;
 }
+.open-data-avatar {
+
+  display:block; 
+  overflow:hidden; 
+  border-radius: 50%;
+}

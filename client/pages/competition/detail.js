@@ -95,7 +95,7 @@ Page({
                 break;
             }
             var size_kb = currentValue.size / 1024;
-            size = size_kb >= 1 ? (size_kb.toFixed(1) + 'Kb') : currentValue.size + 'b';
+            let size = size_kb >= 1 ? (size_kb.toFixed(1) + 'Kb') : currentValue.size + 'b';
             var size_Mb = size_kb / 1024;
             currentValue.size = size_Mb >= 1 ? (size_Mb.toFixed(1) + 'Mb') : size;
           });
@@ -261,6 +261,9 @@ Page({
     })
   },
   more(e) {
+    this.setData({
+      modalName: null
+    })
     wx.navigateTo({
       url: e.currentTarget.dataset.url,
     })

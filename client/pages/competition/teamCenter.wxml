@@ -1,0 +1,42 @@
+<navigationBar bgColor="bg-black" isBack="{{true}}">
+    <view slot="backText"></view>
+    <view slot="content">{{team.name}}</view>
+</navigationBar>
+
+
+<view class="cu-list grid col-3">
+  <view class="cu-item" wx:for="{{funcList}}" wx:key bindtap="{{item.method}}"> 
+    <view class="icon-{{item.icon}} text-{{item.color}}" >
+      <view class="cu-tag badge" wx:if="{{item.badge!=0}}">
+        <block wx:if="{{item.badge!=1}}">{{item.badge>99?"99+":item.badge}}</block>
+      </view>
+    </view>
+    <text>{{item.name}}</text>
+  </view>
+</view>
+<view class="bg-white shadow-lg">
+  <view class="text-center margin-top padding">
+    <view>
+        <view>—— {{team.name}} ——</view>
+        <view class="text-sm text-grey padding-sm">id: {{team.id}}</view>
+    </view>
+  </view>
+  <view class="cu-list menu-avatar" >
+    <view class="cu-item" wx:for="{{team.member}}" wx:key>
+      <view class="cu-avatar round lg" style="background-image:url({{item.avatar}});"></view>
+      <view class="content">
+        <view>
+          <text class="text-cut">{{item.name}}</text>
+          <view class="cu-tag round bg-orange sm">{{item.role}}</view>
+        </view>
+        <view class="text-gray text-sm flex">
+          <text class="text-cut">{{item.academy}}</text>
+        </view>
+      </view>
+      <view class="action">
+        <view class="text-grey text-xs">{{item.joinTime}}</view>
+      </view>
+    </view>
+  </view>
+
+</view>

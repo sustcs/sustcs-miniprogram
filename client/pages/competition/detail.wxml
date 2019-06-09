@@ -143,7 +143,7 @@
                 <text class="text-grey text-sm">Houston Rockets</text>
             </view>
             <view class="action">
-                <button class="cu-btn round bg-green shadow">join</button>
+                
             </view>
         </view>
     </view>
@@ -187,20 +187,15 @@
                 <text class="icon-close "></text>
             </view>
         </view>
-        <view class="cu-list menu sm-border card-menu text-center">
+        <view class="cu-list menu sm-border card-menu text-center margin-bottom">
             <view class="flex">
-                <view class="flex-sub bg-gradual-red padding-sm radius text-center shadow-blur  margin-xs ">
+                <view class="flex-sub bg-gradual-red padding-sm radius text-center shadow-blur  margin-xs " bindtap="more" data-url="teamList?competition={{dataDetail.title}}">
                     <view class="text-lg">member</view>
                     <view class="margin-top-sm">to join a team</view>
                 </view>
-                <view class="flex-sub bg-gradual-purple padding-sm radius text-center shadow-blur margin-xs ">
+                <view class="flex-sub bg-gradual-purple padding-sm radius text-center shadow-blur margin-xs " bindtap="more" data-url="teamBuild?competition={{dataDetail.title}}">
                     <view class="text-lg">captain</view>
                     <view class="margin-top-sm">to build a team</view>
-                </view>
-            </view>
-            <view class="cu-bar bg-white justify-end">
-                <view class="action">
-                    <button class="cu-btn bg-green" bindtap="hideModal">next</button>
                 </view>
             </view>
         </view>

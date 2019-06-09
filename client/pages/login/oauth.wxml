@@ -1,0 +1,46 @@
+<view class='UCenter-bg'>
+    <view class='space'>
+        <view class="stars ">
+            <view class="star "></view>
+            <view class="star pink "></view>
+            <view class="star blue "></view>
+            <view class="star yellow "></view>
+        </view>
+    </view>
+  <view class="cu-avatar lg round" style="background-image:url(http://www.sust.edu.cn/_mediafile/sust2018/2015/08/06/3lwd2p0kr1.jpg);"></view>
+    <view class='margin-top'>
+        <text>Unified identification</text>
+    </view>
+</view>
+<form bindsubmit="login">
+    <view class="cu-card case bg-white margin-lr sm-border">
+        <view class="cu-item">
+            <view class="bg-white nav text-center">
+                <view class="flex text-center">
+                    <view class="cu-item flex-sub {{index==TabCur?'text-blue cur':''}}" wx:for="{{method}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+                        {{item}}
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view wx:if="{{TabCur}}">
+            <view class="cu-form-group margin-top">
+                <view class="title">Username:</view>
+                <input placeholder="" name="username"></input>
+            </view>
+            <view class="cu-form-group">
+                <view class="title">Password:</view>
+                <input placeholder="" type="password" name="password"></input>
+            </view>
+        </view>
+        <view wx:else>
+            <view class="cu-form-group margin-top">
+                <view class="title">Token</view>
+                <input placeholder="" type="password" name="token"></input>
+            </view>
+        </view>
+    </view>
+    <view class="padding flex flex-direction">
+        <button class="cu-btn bg-blue lg" form-type="submit">Login</button>
+    </view>
+</form>

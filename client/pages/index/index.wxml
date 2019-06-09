@@ -10,10 +10,12 @@
   <view class="bannerBox ">
     <view class='bannerBox-back bg-blue'></view>
   </view>
-  <view class="flex padding-sm justify-between">
-    <view class="cu-avatar round action" bindtap="showModal" data-target="DrawerModalL" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
-    <navigator class='cu-avatar bg-blue round' hover-class='none' url='../search/index' open-type="navigate">
-      <text class='icon-search lg'></text>
+  <view class="flex justify-between">
+    <view class="cu-avatar lg bg-blue text-xxl" bindtap="showModal" data-target="DrawerModalL" >
+      <text class="icon-list"></text>
+    </view>
+    <navigator class='cu-avatar lg bg-blue text-xxl' hover-class='none' url='../search/index' open-type="navigate">
+      <text class='icon-search'></text>
     </navigator>
   </view>
   <include src="../menu/index.wxml" />

@@ -205,8 +205,9 @@ Page({
                 url: 'content?path=' + item.path
             })
         } else if (item.type === 'file') {
+            
             var size_kb = item.size / 1024;
-            size = size_kb >= 1 ? (size_kb.toFixed(1) + 'Kb') : item.size + 'b';
+            let size = size_kb >= 1 ? (size_kb.toFixed(1) + 'Kb') : item.size + 'b';
             var size_Mb = size_kb / 1024;
             size = size_Mb >= 1 ? (size_Mb.toFixed(1) + 'Mb') : size;
             this.setData({

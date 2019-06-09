@@ -3,6 +3,7 @@
 const app = getApp();
 var date = new Date();
 var weekday = ["Sun.", "Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat."];
+const { domainPrefix } = require('../../config');
 Page({
   data: {
     StatusBar: app.globalData.StatusBar,
@@ -53,7 +54,7 @@ Page({
         icon: "lightfill",
         color: "yellow",
         badge: 0,
-        name: "Exam"
+        name: "Job"
       },
       {
         icon: "more",
@@ -68,21 +69,18 @@ Page({
       {
         icon: "myfill",
         color: "purple",
-        badge: 120,
         name: "User Center",
         url: "../user/index"
       },
       {
         icon: "questionfill",
         color: "red",
-        badge: 120,
         name: "Feedback",
         url: "../feedback/index"
       },
       {
         icon: "discoverfill",
         color: "blue",
-        badge: 120,
         name: "About us",
         url: "../about/index"
       }
@@ -172,9 +170,11 @@ Page({
 
   onLoad: function () { },
   showModal(e) {
-    this.setData({
+    let that = this;
+    that.setData({
       modalName: e.currentTarget.dataset.target
     });
+    
   },
   hideModal(e) {
     this.setData({
@@ -187,6 +187,59 @@ Page({
       url: func.url
     })
   },
+
+  scan: function () {
+    let that = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success(res) {
+        var qrCode = res.result;
+        // check qrcode 
+
+        let legalDomain = domainPrefix.find(function(domain) {
+          return qrCode.indexOf(domain) === 0;
+        });
+        
+        if(legalDomain === undefined) {
+          wx.showModal({
+            title: 'Error',
+            content: 'what are you scanning',
+            showCancel: false,
+            confirmText: 'I got it'
+          })
+        } else if(qrCode.indexOf(legalDomain + 'weapp') === 0) {
+          var scanContent = qrCode.replace(legalDomain + 'weapp', "") + '&domain=' + legalDomain;
+          wx.navigateTo({
+            url: scanContent
+          })
+        } else {
+          wx.showModal({
+            title: 'please paste it into the browser open',
+            content: qrCode,
+            showCancel: false,
+            confirmText: 'copy',
+            success(res) {
+              if (res.confirm) {
+                  wx.setClipboardData({
+                      data: qrCode,
+                      success(res) {
+                          if (res.errMsg == "setClipboardData:ok") {
+                            wx.showToast({
+                              title: 'copied',
+                              icon: 'success',
+                              duration: 1000
+                          })
+                        }
+                      }
+                  })
+              }
+            }
+          })
+        }
+      },
+    })
+  },
+
   // ListTouch触摸开始
   ListTouchStart(e) {
     this.setData({

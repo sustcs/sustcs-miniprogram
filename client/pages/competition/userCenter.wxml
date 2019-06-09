@@ -37,7 +37,7 @@
             <view class="cu-item cur text-blue">
                 <view class="content bg-green shadow-blur">
                     <text>{{item.time}}</text>
-                    【{{item.name}}】{{item.role}}
+                    【{{item.title}}】{{item.role}}
                 </view>
             </view>
         </view>
@@ -59,8 +59,8 @@
                     <view class="text-lg">I {{state.action}} a team</view>
                     <view class="text-gray text-df">{{state.time}}</view>
                 </view>
-                <view class="text-gray text-content text-df">"{{state.team}}"</view>
-                <navigator class="cu-item radius margin-top-sm  bg-img shadow-blur bg-mask" style="background-image:url({{state.competition.poster}})" url='detail?competition={{state.competition.title}}'>
+                <view class="text-gray text-content text-df">"{{state.competition.team.name}}"</view>
+                <navigator class="cu-item radius margin-top-sm  bg-img shadow-blur bg-mask" style="background-image:url({{state.competition.poster}})" url='teamCenter?teamId={{state.competition.team.id}}'>
                     <view class="padding-xl text-white">
                         <view class="padding-xs text-lg">{{state.competition.title}}</view>
                         <view class="padding-xs">{{state.competition.description}}</view>

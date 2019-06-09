@@ -15,6 +15,7 @@
     "pages/login/index",
     "pages/login/github",
     "pages/login/test",
+    "pages/login/oauth",
     "pages/course/index",
     "pages/course/review",
     "pages/course/detail",
@@ -32,18 +33,25 @@
     "pages/competition/detail",
     "pages/competition/teamList",
     "pages/competition/userCenter",
+    "pages/competition/teamCenter",
+    "pages/competition/teamChat",
+    "pages/competition/teamBuild",
     "pages/test/index",
     "pages/test/list",
-    "pages/test/detail"
+    "pages/test/detail",
+    "pages/auth/index",
+    "pages/auth/auth",
+    "pages/auth/join"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "ColorUI",
+    "navigationBarTitleText": "SUSTCS",
     "navigationStyle": "custom",
     "navigationBarTextStyle": "white"
   },
   "usingComponents": {
     "navigationBar": "components/colorui/cu-custom"
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }

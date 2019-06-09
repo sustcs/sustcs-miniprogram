@@ -1,25 +1,49 @@
 <view class="cu-modal drawer-modal justify-start {{modalName=='DrawerModalL'?'show':''}}" bindtap='hideModal'>
-  <view class="cu-dialog basis-lg"  style="top:{{CustomBar}}px;">
-    <view class='cu-list menu text-left'>
-      <view class='cu-item arrow' wx:for="{{menuItem}}" wx:key>
-      <navigator class='content' hover-class='none' url='{{item.url}}' open-type="navigate">
-        <text class='icon-{{item.icon}} text-{{item.color}}'></text>
-        <text class='text-grey'>{{item.name}}</text>
-      </navigator>
-        
+  <view class="cu-dialog basis-lg bg-white"  catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-card article no-card margin ">
+      <view class="cu-item" bindtap='scan'>
+        <view class="content">
+          <view class="cu-avatar radius lg">
+            <open-data type="userAvatarUrl"></open-data>
+          </view>
+          <view class='desc'>
+            <view class="flex margin-left"><open-data type="userNickName"></open-data></view>
+            <view class="text-grey flex margin-left">
+              <open-data type="userCountry" lang="zh_CN"></open-data>
+              <open-data type="userProvince" lang="zh_CN"></open-data>
+              <open-data type="userCity" lang="zh_CN"></open-data>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
-    <view class='padding-xl text-center text-grey'>
-      <image src='https://sustcs-cdn.makergyt.com/sust-logo.jpg' class='response round' mode='widthFix' style='width:100rpx;margin-top:100rpx'></image>
-      <view class='text-df margin-top-xl'>SUSTCS
-        <text class='text-df'>v1.0</text>
+    <view class='cu-list menu text-left'>
+      
+      <view class="cu-item arrow" bindtap='scan'>
+        <view class="content">
+          <text class="icon-scan text-grey"></text>
+          <text class="text-grey">Scan QR</text>
+        </view>
       </view>
-      <view class='margin-top-sm'>
-        <text>©2019 All rights reserved.</text>
+      <view class='cu-item arrow' wx:for="{{menuItem}}" wx:key>
+        <navigator class='content' hover-class='none' url='{{item.url}}' open-type="navigate">
+          <text class='icon-{{item.icon}} text-{{item.color}}'></text>
+          <text class='text-grey'>{{item.name}}</text>
+        </navigator>
       </view>
     </view>
   </view>
-  <view class="flex  padding align-center">
-      <text class='icon-pullright text-sl text-white' style='width:200rpx;margin-top:100rpx'></text>
+  <view class="flex text-xxl padding align-center">
+      <text class='icon-pullright  text-white' style='width:200rpx;margin-top:100rpx'></text>
   </view>
 </view>
+  <!-- <view class='padding-xl text-center text-grey'>
+    <image src='https://sustcs-cdn.makergyt.com/sust-logo.jpg' class='response round' mode='widthFix' style='width:100rpx;margin-top:100rpx'></image>
+    <view class='text-df margin-top-xl'>
+      SUSTCS
+      <text class='text-df'>v1.0</text>
+    </view>
+    <view class='margin-top-sm'>
+      <text>©2019 All rights reserved.</text>
+    </view>
+  </view> -->

@@ -1,0 +1,16 @@
+<navigationBar bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{team.name}}</view>
+</navigationBar>
+<form bindsubmit="formSubmit">
+  <view class="cu-form-group margin-top">
+    <view class="title">Name:</view>
+    <input placeholder="" name="name"></input>
+  </view>
+  <view class="cu-form-group margin-top">
+    <textarea data-placeholder="Note" maxlength="-1" name="note"></textarea>
+  </view>
+  <view class="padding flex flex-direction">
+    <button class='cu-btn bg-green lg' bindtap="authorize" form-type='submit'>Submit</button>
+  </view>
+</form>

@@ -1,2 +1,17 @@
-<!--pages/test/index.wxml-->
-<text>pages/test/index.wxml</text>
+<navigationBar bgColor="bg-gradual-pink" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">{{team.name}}</view>
+</navigationBar>
+<form>
+<editor
+  id="editor"
+  class="ql-container"
+  placeholder="{{placeholder}}"
+  showImgSize
+  showImgToolbar
+  showImgResize
+  bindstatuschange="onStatusChange"
+  read-only="{{readOnly}}"
+  bindready="onEditorReady">
+</editor>
+</form>

@@ -15,23 +15,27 @@ Page({
     grade: '2015',
     avatar: 'https://img.xiaopiu.com/userImages/img9156799f8280.png',
     experience: [{
-      name: '微信小程序应用开发赛',
+      title: '微信小程序应用开发赛',
       time: '2018-5-25',
       role: 'captain'
     },
     {
-      name: '网络技术挑战赛',
+      title: '网络技术挑战赛',
       time: '2018-3-25',
       role: 'member'
     }],
     state: {
       action: 'start',
-      team: 'San Antonio Spurs',
+
       competition: {
         title: '微信小程序应用开发赛',
         description: '2019 -- 中国高校计算机大赛',
         poster: 'https://res.wx.qq.com/community/dist/images/home_img_miniprogarmdevelopmentguides_2x_22399a.png',
-        url: 'detail'
+        url: 'detail',
+        team: {
+          id: 666666,
+          name: 'Rocket'
+        },
       },
       time: '2018-5-25'
     }
@@ -53,6 +57,7 @@ Page({
    */
   onReady: function () {
     // var windowWidth = 320;
+    let windowWidth;
     try {
       var res = wx.getSystemInfoSync();
       windowWidth = res.windowWidth;

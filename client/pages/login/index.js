@@ -1,66 +1,63 @@
-// pages/login/index.js
+//index.js
+//获取应用实例
+const app = getApp();
+
 Page({
-
-  /**
-   * Page initial data
-   */
   data: {
-
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar
   },
 
-  /**
-   * Lifecycle function--Called when page load
-   */
-  onLoad: function (options) {
-
+  onLoad: function () { },
+  weChat: function () {
+    wx.login({
+      success(res) {
+        // wx.showToast({
+        //   title: res.errMsg,
+        //   icon: "success",
+        //   duration: 2000
+        // });
+        if (res.code) {
+          // 发起网络请求
+          wx.request({
+            url: "https://dtofih-80-gpedqh.dev.ide.live/login",
+            data: {
+              code: res.code
+            },
+            method: "GET",
+            success: function (res) {
+              var session_data = res.data.session_data;
+              var session_id = session_data.session_id;
+              var expires = session_data.expires;
+              var data = session_data.data;
+              wx.setStorageSync("session_id", session_id);
+            }
+          });
+        } else {
+          console.log("登录失败！" + res.errMsg);
+        }
+      },
+      fail(res) {
+        wx.showModal({
+          title: "err",
+          content: res.errMsg
+        });
+      }
+    });
   },
-
-  /**
-   * Lifecycle function--Called when page is initially rendered
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page show
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page hide
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * Lifecycle function--Called when page unload
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * Page event handler function--Called when user drop down
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * Called when page reach bottom
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * Called when user click on the top right corner to share
-   */
-  onShareAppMessage: function () {
-
+  testCloud: function () {
+    wx.cloud.callFunction({
+      // 云函数名称
+      name: "add",
+      // 传给云函数的参数
+      data: {
+        a: 1,
+        b: 2
+      },
+      success(res) {
+        console.log(res.result); // 3
+      },
+      fail: console.error
+    });
   }
-})
+});

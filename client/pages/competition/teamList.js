@@ -24,33 +24,7 @@ Page({
         isShow: true
       }
     ],
-    allRole: [{
-      value: 0,
-      name: 'document',
-      checked: false,
-    }, {
-      value: 1,
-      name: 'design',
-      checked: false,
-    }, {
-      value: 2,
-      name: 'administrative',
-      checked: false,
-    }, {
-      value: 3,
-      name: 'speech',
-      checked: false,
-    }, {
-      value: 4,
-      name: 'develop',
-      checked: false,
-
-    }, {
-      value: 5,
-      name: 'promote',
-      checked: false,
-
-    }]
+    
   },
 
   /**

@@ -5,11 +5,12 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"es6": false,
-		"postcss": false,
-		"minified": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.5.0",
@@ -21,6 +22,8 @@
 	"isGameTourist": false,
 	"cloudfunctionRoot": "cloud-functions/",
 	"miniprogramRoot": "client/",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,
@@ -39,7 +42,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 21,
+			"current": 30,
 			"list": [
 				{
 					"id": 0,
@@ -92,13 +95,6 @@
 				},
 				{
 					"id": -1,
-					"name": "source/content",
-					"pathName": "pages/source/content",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "source/preview",
 					"pathName": "pages/source/preview",
 					"query": "",
@@ -133,8 +129,8 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "/source/issueList",
+					"id": 13,
+					"name": "source/issueList",
 					"pathName": "pages/source/issueList",
 					"query": "",
 					"scene": null
@@ -189,9 +185,80 @@
 					"scene": null
 				},
 				{
-					"id": -1,
-					"name": "test",
+					"id": 20,
+					"name": "test/index",
 					"pathName": "pages/test/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "/user/index",
+					"pathName": "pages/user/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 23,
+					"name": "auth/index",
+					"pathName": "pages/auth/index",
+					"query": "domain=/pages/competition/teamChat&action=chat",
+					"scene": null
+				},
+				{
+					"id": 24,
+					"name": "auth/auth",
+					"pathName": "pages/auth/auth",
+					"query": "key=401f2f30-89cc-11e9-9ec0-1f0a2f1429d9&action=login&domain=https://sustcs.cn",
+					"scene": null
+				},
+				{
+					"id": 25,
+					"name": "competition/teamCenter",
+					"pathName": "pages/competition/teamCenter",
+					"query": "teamId=666666",
+					"scene": null
+				},
+				{
+					"id": 26,
+					"name": "/competition/teamChat",
+					"pathName": "pages/competition/teamChat",
+					"query": "teamId=666666",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login/index",
+					"pathName": "pages/login/index",
+					"query": "teamId=666666",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login/test",
+					"pathName": "pages/login/test",
+					"query": "teamId=666666",
+					"scene": null
+				},
+				{
+					"id": 29,
+					"name": "auth/join",
+					"pathName": "pages/auth/join",
+					"query": "domain=Rocket&action=join",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "competition/teamBuild",
+					"pathName": "pages/competition/teamBuild",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "login/oauth",
+					"pathName": "pages/login/oauth",
+					"query": "",
 					"scene": null
 				}
 			]
