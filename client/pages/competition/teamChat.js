@@ -103,7 +103,7 @@ Page({
     }
   },
   enter() {
-    this.pushMessage(createSystemMessage('正在登录...'))
+    this.pushMessage(createSystemMessage('Logging in...'))
     // 如果登录过，会记录当前用户在 this.me 上
     if (!this.me) {
       wx.getUserInfo({
@@ -161,7 +161,7 @@ Page({
     this.setData({ inputContent: null })
   },
   createConnect: function (e) {
-    this.amendMessage(createSystemMessage('正在加入群聊...'))
+    this.amendMessage(createSystemMessage('Joining a group chat...'))
 
     // const socket = (this.socket = io(
     //   serverUrl,
@@ -178,7 +178,7 @@ Page({
     ))
     socket.on('connect', () => {
       this.popMessage()
-      this.pushMessage(createSystemMessage('连接成功'))
+      this.pushMessage(createSystemMessage('connect success'))
     })
 
     socket.on('connect_error', d => {
@@ -210,7 +210,7 @@ Page({
     })
 
     socket.on('reconnect_attempt', () => {
-      this.pushMessage(createSystemMessage('正在尝试重连'))
+      this.pushMessage(createSystemMessage('reconnect_attempt'))
     })
 
     socket.on('error', err => {
@@ -234,7 +234,7 @@ Page({
     socket.on('join', d => {
       console.log(d);
       if (d.username === that.me.nickName) {
-        this.pushMessage(createSystemMessage(`您已加入聊天室，当前共有 ${d.numUsers} 人`))
+        this.pushMessage(createSystemMessage(`您已加入本团队聊天，当前共有 ${d.numUsers} 人`))
       } else {
         this.pushMessage(createSystemMessage(`${d.username} 来了，当前共有 ${d.numUsers} 人`))
       }

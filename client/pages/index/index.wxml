@@ -43,7 +43,7 @@
   </view>
   <!-- menu -->
   <!-- article -->
-  <view class="bg-img padding-top-xl " style="background-image: url('https://sustcs-cdn.makergyt.com/sust-scene-1.jpg')">
+  <!-- <view class="bg-img padding-top-xl " style="background-image: url('https://sustcs-cdn.makergyt.com/sust-scene-1.jpg')">
     <view class='bg-shadeBottom margin-top-xl ' style='height:200rpx;'>
       <view class="flex justify-between padding-tb-xl padding-lr-sm ">
         <view class='margin-top-xl '>
@@ -62,19 +62,25 @@
     <view class='action'>
       <view class="cu-avatar radius lg" style="background-image:url(https://sustcs-cdn.makergyt.com/sust-logo.jpg);"></view>
     </view>
-  </view>
+  </view> -->
   <!-- article -->
 </view>
 <!-- page-1 -->
 <!-- Split -->
-<view class='padding'>
+<!-- <view class='padding'>
   <view class='cu-steps'>
     <view class='cu-item'>^_^</view>
   </view>
-</view>
+</view> -->
 <!-- Split -->
 <!-- page-2 -->
 <!-- weather -->
+<view class="cu-bar bg-white solid-bottom ">
+  <view class='action'>
+    <text class='icon-titles text-orange '></text>
+    Today's weather
+  </view>
+</view>
 <view class="cu-card article no-card solid-bottom">
   <view class="flex bg-white">
     <view class='flex-twice  padding-tb-sm'>

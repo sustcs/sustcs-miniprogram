@@ -40,7 +40,12 @@
             </view>
         </view>
     </view>
-    <view class="padding flex flex-direction">
-        <button class="cu-btn bg-blue lg" form-type="submit">Login</button>
+    <view class="padding flex flex-direction" wx:if="{{isBind}}">
+        <button class="cu-btn line-green lg margin-top" disabled><text class="icon-check"> </text> <open-data type="userNickName"></open-data></button>
+        <button class="cu-btn bg-blue lg margin-top" form-type="submit">Login</button>
+    </view>
+    <view class="padding flex flex-direction" wx:else>
+        <button class="cu-btn line-yellow lg margin-top" open-type="getUserInfo" bindgetuserinfo="authorize" ><text class="icon-warn"> </text> Please bind my wechat</button>
+        <button class="cu-btn bg-blue lg margin-top" form-type="submit" disabled>Login</button>
     </view>
 </form>

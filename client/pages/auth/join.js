@@ -1,4 +1,4 @@
-// pages/auth/auth.js
+// Authorize join team
 const io = require('../../utils/weapp.socket.io.js');
 const { debug } = require('../../utils/common.js');
 const { serverUrl } = require('../../config');
@@ -9,6 +9,7 @@ Page({
     this.setData({
       domain: options.domain,
       action: options.action,
+      param: options.param
       // userInfo: {
       //   openid: res.result.openid,
       // }
@@ -46,7 +47,7 @@ Page({
       this.setData({
         auth: {
           statusCode: 200,
-          msg: (this.data.action === 'join'? 'Welcome ': 'Goodbye') + userInfo.nickName
+          msg: userInfo.nickName + this.data.action
         }
       });
     }
@@ -54,7 +55,7 @@ Page({
   reject: function () {
     setTimeout(function () {
       wx.navigateBack({
-        delta: 2
+        delta: 1
       })
     }, 1000);
     this.setData({

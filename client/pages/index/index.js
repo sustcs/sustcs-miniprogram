@@ -190,6 +190,7 @@ Page({
 
   scan: function () {
     let that = this;
+    this.hideModal();
     wx.scanCode({
       onlyFromCamera: true,
       success(res) {

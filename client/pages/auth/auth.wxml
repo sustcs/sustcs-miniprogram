@@ -18,7 +18,7 @@
     </view>
   </view>
   <view wx:if="{{auth.statusCode == 100}}" class="padding flex flex-direction">
-    <button class='cu-btn bg-green lg' bindtap="authorize">Authorize</button>
+    <button class='cu-btn bg-green lg' open-type="getUserInfo" bindgetuserinfo="authorize">Authorize</button>
     <button class='cu-btn bg-grey margin-tb-sm lg' bindtap="reject">Reject</button>
   </view>
   <view wx:else class="padding flex flex-direction">

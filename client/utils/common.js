@@ -71,9 +71,24 @@ const debug = (object, msg, isDebug = true, isTrace = false) => {
     }
   }
 }
+let searchFromJsonArray = function (array, fieldName, fieldValue) {
+  var result = [];
+  if (array.length !== 0) {
+    for (var i = 0; i < array.length; i++) {
+      var rowItem = array[i];
+      for (var item in rowItem) {
+        if (item == fieldName && rowItem[item] == fieldValue) {
+          result.push(rowItem);
+        }
+      }
+    }
+  }
+  return result;
+}
 module.exports = {
     getCurrentPageUrl: getCurrentPageUrl,
     timeago: timeago,
   formatTime,
-  debug
+  debug,
+  searchFromJsonArray
 }

@@ -1,19 +1,10 @@
 Page({
-  readOnlyChange() {
+  data: {
+    logs:''
+  },
+  onLoad: function () {
     this.setData({
-      readOnly: !this.data.readOnly
+      storage: wx.getStorageSync('username')
     })
-  },
-  onEditorReady() {
-    const that = this
-    wx.createSelectorQuery().select('#editor').context(function (res) {
-      that.editorCtx = res.context
-    }).exec()
-  },
-  format(e) {
-    let { name, value } = e.target.dataset
-    if (!name) return
-    // console.log('format', name, value)
-    this.editorCtx.format(name, value)
-  },
+  }
 })

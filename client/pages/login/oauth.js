@@ -1,7 +1,7 @@
 // pages/login/github.js
 const app = getApp();
 const { base64_encode } = require('../../utils/base64');
-const { oauthUrl} = require('../../config.js');
+const { oauthUrl, serverUrl} = require('../../config.js');
 Page({
   data: {
     pageConfig: {
@@ -19,6 +19,20 @@ Page({
     })
   },
   onLoad(options) {
+    let that = this;
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting['scope.userInfo'] === undefined || res.authSetting['scope.userInfo'] === false) {
+          that.setData({
+            isBind: false,
+          });
+        } else {
+          that.setData({
+            isBind: true,
+          });
+        }
+      }
+    })
   },
   login(e) {
     let authorization = '';
@@ -44,36 +58,107 @@ Page({
           icon: 'none'
         })
       } else {
-        wx,wx.request({
-          url: oauthUrl,
+        wx.request({
+          url: oauthUrl + 'login',
           data: {
-            username,password
+            username, password
           },
           header: {
-            
+
           },
           method: 'POST',
           dataType: 'json',
-          success: function(res) {
-            console.log(res);
-            if(rs.data.statusCode === 1) {
+          success: function (res) {
+            if (res.data.statusCode === 200) {
               let token = res.data.msg;
+              wx.setStorageSync('username', username);
               wx.setStorageSync('token', token);
-              wx.navigateBack({
-                delta: 1
+              app.globalData.username = username;
+
+              wx.request({
+                url: serverUrl + 'users/' + app.globalData.openid,
+                data: {
+                  school_id: username,
+                },
+                method: 'PUT',
+                dataType: 'json',
+                success: function (result) {
+                  if (result.statusCode === 204) {
+                    wx.showToast({
+                      title: 'Login success',
+                    })
+                    setTimeout(function () {
+                      wx.navigateBack({
+                        delta: 2 //app -> auth -> oauth
+                      })
+                    }, 2000);
+                  } else if (result.statusCode === 404) {
+                    wx.showToast({
+                      title: result.data.msg,
+                      icon: 'none'
+                    })
+
+                  } else {
+                    wx.showModal({
+                      title: 'Error',
+                      content: 'Wait for fix',
+                    })
+                  }
+                },
               })
-            } else {
+            } else if (res.data.statusCode === 404) {
               wx.showToast({
-                title: 'Wrong account or password',
+                title: res.data.msg,
                 icon: 'none'
               })
+            } else {
+              wx.showModal({
+                title: 'Login failed',
+                content: res.data.msg,
+              })
             }
-
           },
         })
       }
+    }
+  },
+  authorize(e) {
+    const { errMsg, userInfo } = e.detail;
+    let that = this;
+    if (errMsg === 'getUserInfo:fail auth deny') {
+      wx.showToast({
+        title: errMsg,
+        icon: 'none'
+      })
+    } else if (errMsg === 'getUserInfo:ok') {
+      wx.request({
+        url: serverUrl + 'users/' + app.globalData.openid,
+        data: {
+          username: userInfo.nickName,
+          avatarUrl: userInfo.avatarUrl
+        },
+        method: 'PUT',
+        dataType: 'json',
+        success: function (result) {
+          if (result.statusCode === 204) {
+            that.setData({
+              isBind: true
+            });
+          } else if (result.statusCode === 404) {
+            wx.showToast({
+              title: res.data.msg,
+              icon: 'none'
+            })
+
+          } else {
+            wx.showModal({
+              title: 'Error',
+              content: 'Wait for fix',
+            })
+          }
+        },
+      })
 
     }
-    
   }
 })

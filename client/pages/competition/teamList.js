@@ -1,5 +1,6 @@
 // pages/competition/teamList.js
 const app = getApp();
+const { searchFromJsonArray } = require('../../utils/common');
 Page({
 
   /**
@@ -24,7 +25,9 @@ Page({
         isShow: true
       }
     ],
-    
+        allRole: ['会计','金融','行政','财务','前台','人事',],
+        role: '会计',
+
   },
 
   /**
@@ -52,32 +55,17 @@ Page({
     })
   },
   ChooseCheckbox(e) {
-    let items = this.data.allRole;
-    let choose = e.currentTarget.dataset.value;
-    var index = items.findIndex(function (item) {
-      return item.value === choose
-    })
-    items[index].checked = !items[index].checked
     this.setData({
-      allRole: items
+      role: e.currentTarget.dataset.value
     })
   },
   submitJoin() {
-    let items = this.data.allRole;
-    var applyRole = items.filter(function (item) {
-      return item.checked === true
+    let role = this.data.role;
+    let teamId = this.data.team.id;
+    this.hideModal();
+    wx.navigateTo({
+      url: '/pages/auth/join?domain=' + teamId +  '&action=apply' + '&param=' + role,
     })
-    //send applyRole
-    var that = this
-    wx.showToast({
-      title: 'success',
-      icon: 'success',
-      duration: 1500,
-      success: (result) => {
-        that.hideModal()
-      }
-    });
-
   },
   showModal(e) {
     this.setData({
@@ -88,13 +76,19 @@ Page({
         note: e.currentTarget.dataset.item.note
       })
     } else {
-      wx.navigateTo({
-        url: e.currentTarget.dataset.target,
-        success: (result) => {
-
-        },
-      });
+      let team = searchFromJsonArray(this.data.teamList, 'id', e.currentTarget.dataset.item.id)[0];
+      this.setData({
+        team: team
+      })
     }
+  },
+  viewDetail(e) {
+    wx.navigateTo({
+      url: e.currentTarget.dataset.target,
+      success: (result) => {
+
+      },
+    });
   },
   hideModal(e) {
     this.setData({

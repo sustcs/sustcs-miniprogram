@@ -30,13 +30,13 @@
             <view>—— {{item.name}} ——</view>
             <view class="text-sm text-grey padding-sm">id: {{item.id}}</view>
         </view>
-        <view class="cu-avatar lg round" style="background-image:url(https://img.xiaopiu.com/userImages/img9156799f8280.png);" bindtap="showModal" data-target="userCenter?username=jack"></view>
+        <view class="cu-avatar lg round" style="background-image:url(https://img.xiaopiu.com/userImages/img9156799f8280.png);" bindtap="viewDetail" data-target="userCenter?username={{item.captain}}"></view>
         <view class='text-sm text-grey padding-sm'>captain: {{item.captain}}</view>
         <view class="padding-sm">
             <view class="cu-avatar margin-xs round" wx:for="{{5}}" wx:key style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big1000{{index+1}}.jpg);"></view>
         </view>
         <view class="padding-sm ">
-            <button class="margin-lr-xl cu-btn block round bg-black" bindtap="showModal" data-target="ChooseRole" disabled="{{!item.state}}">
+            <button class="margin-lr-xl cu-btn block round bg-black" bindtap="showModal" data-target="ChooseRole"  data-item="{{item}}" disabled="{{!item.state}}">
                 {{item.state?'Join':'Filled'}}
             </button>
         </view>
@@ -65,14 +65,14 @@
             </view>
         </view>
         <view class="grid col-3 padding-sm bg-white">
-            <view wx:for="{{allRole}}" class="padding-xs" wx:key="{{index}}">
-                <view class="cu-btn round black block {{item.checked?'bg-black':'line-black'}}" bindtap="ChooseCheckbox" data-value="{{item.value}}">
-                    {{item.name}}
+            <view wx:for="{{allRole}}" class="padding-xs" wx:key>
+                <view class="cu-btn round black block {{item === role ?'bg-black':'line-black'}}" bindtap="ChooseCheckbox" data-value="{{item}}">
+                    {{item}}
                 </view>
             </view>
         </view>
         <view class="cu-bar bg-white">
-            <view class="action text-blue"></view>
+            <view class="action text-blue">{{team.id}}</view>
             <view class="action text-black" bindtap="submitJoin">
                 <button class="cu-btn bg-black  padding-lr-xl round">Join</button>
             </view>

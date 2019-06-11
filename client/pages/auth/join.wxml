@@ -11,7 +11,7 @@
         <text wx:elif="{{auth.statusCode === 200}}" class="icon-roundcheckfill text-green"></text>
         <text wx:else class="icon-roundclosefill text-red"></text>
       </view>
-      <view class="padding">Do you allow the following applications to use your information for {{action}} ?</view>
+      <view class="padding">Do you allow the following applications to use your information for {{action}} as {{param}}?</view>
       <view class="bg-grey padding-tb radius text-center light">
         <view class="text">{{domain}}</view>
       </view>

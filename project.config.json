@@ -24,6 +24,7 @@
 	"miniprogramRoot": "client/",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -42,7 +43,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 30,
+			"current": 31,
 			"list": [
 				{
 					"id": 0,
@@ -115,8 +116,8 @@
 					"scene": null
 				},
 				{
-					"id": 11,
-					"name": "test",
+					"id": 10,
+					"name": "login/test",
 					"pathName": "pages/login/test",
 					"query": "path=competition/中文测试",
 					"scene": null
@@ -258,6 +259,13 @@
 					"id": -1,
 					"name": "login/oauth",
 					"pathName": "pages/login/oauth",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "introduction/index",
+					"pathName": "pages/introduction/index",
 					"query": "",
 					"scene": null
 				}

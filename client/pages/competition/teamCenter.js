@@ -1,7 +1,6 @@
 // pages/competition/teamList.js
 const app = getApp();
-const { timeago } = require('../../utils/common');
-
+const { timeago, searchFromJsonArray } = require('../../utils/common');
 Page({
 
   /**
@@ -14,6 +13,7 @@ Page({
       id: '666666',
       member: [
         {
+          school_id: '201506021019',
           name: 'John',
           avatar: '',
           role: 'captain',
@@ -23,6 +23,7 @@ Page({
 
         },
         {
+          school_id: '201506001111',
           name: 'Mike',
           avatar: '',
           role: '会计',
@@ -45,7 +46,7 @@ Page({
         color: "orange",
         badge: 0,
         name: "Invite",
-        method: "invite"
+        method: "showModal"
       }, {
         icon: "exit",
         color: "red",
@@ -64,30 +65,45 @@ Page({
         color: "blue",
         badge: 0,
         name: "Download",
-        method: "download"
+        method: "other"
       },
 
-    ]
+    ],
+    allRole: ['会计', '金融', '行政', '财务', '前台', '人事',],
+    role: '会计',
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    //team = request(options.teamId)
-    this.setData({
-      //team: team
-    })
+    // load data
    
+  },
+  onShow: function() {
+    
+    let result = searchFromJsonArray(this.data.team.member, 'school_id', app.globalData.username);
+    if (result.length === 0) {
+      wx.showModal({
+        title: 'Failed',
+        content: 'You are not a member of this team',
+        showCancel: false,
+        success(res) {
+          if (res.confirm) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
+      })
+    }
   },
   onShareAppMessage(res) {
     if (res.from === 'button') {
-      // 来自页面内转发按钮
-      console.log(res.target)
-    }
-    return {
-      title: 'join us',
-      path: '/pages/auth/join?domain=' + this.data.team.id + '&action=join'
+      return {
+        title: 'join us',
+        path: '/pages/auth/join?domain=' + this.data.team.id + '&action=join' + '&param=' + this.data.role
+      }
     }
   },
 
@@ -96,42 +112,37 @@ Page({
       url: './teamChat?teamid=' + this.data.team.id
     })
   },
-  invite() {
-    wx.showToast({
-      title: 'Please use the upper right corner to forward',
-      icon: 'none',
-      duration: 2000
-    })
-
-  },
   leave() {
+    let role = searchFromJsonArray(this.data.team.member, 'school_id', app.globalData.username)[0].role;
     wx.navigateTo({
-      url: '/pages/auth/join?domain=' + this.data.team.id + '&action=leave'
+      url: '/pages/auth/join?domain=' + this.data.team.id + '&action=leave' + '&param=' + role
     })
-    // wx.showModal({
-    //   title: 'Are you sure?',
-    //   content: 'Once you exit all data about you will be cleared',
-    //   success(res) {
-    //     if (res.confirm) {
-    //       wx.request({
-    //         url: '',
-    //       })
-    //     } else if (res.cancel) {
-    //       wx.showToast({
-    //         title: 'Keep calm',
-    //         icon: 'none'
-    //       })
-    //     }
-    //   }
-    // })
-
   },
   edit() {
     wx.navigateTo({
       url: './teamBuild?teamId=' + this.data.team.id
     })
   },
-  download() {
-    
-  }
+  other() {
+    wx.showToast({
+      title: 'Temporarily not opened',
+      icon: 'none',
+      duration: 2000
+    })
+  },
+  ChooseCheckbox(e) {
+    this.setData({
+      role: e.currentTarget.dataset.value
+    })
+  },
+  showModal(e) {
+    this.setData({
+      modalName: 'ChooseRole'
+    })
+  },
+  hideModal(e) {
+    this.setData({
+      modalName: null
+    })
+  },
 })

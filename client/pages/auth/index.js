@@ -1,4 +1,4 @@
-// pages/auth/auth.js
+// Authorize userinfo
 const io = require('../../utils/weapp.socket.io.js');
 const { debug } = require('../../utils/common.js');
 const { serverUrl } = require('../../config');
@@ -13,6 +13,28 @@ Page({
       //   openid: res.result.openid,
       // }
     });
+  },
+  onShow() {
+    let that = this;
+    if (app.globalData.username === null) {
+      wx.showModal({
+        title: 'Failed',
+        content: 'Need authentication, whether to carry out unified authentication?',
+        success(res) {
+          if (res.confirm) {
+            wx.navigateTo({
+              url: '/pages/login/oauth'
+            })
+          } else if (res.cancel) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        }
+      })
+    } else {
+      this.connectSocket(options.key);
+    }
   },
   data: {
     auth: {

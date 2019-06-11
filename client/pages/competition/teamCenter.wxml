@@ -40,3 +40,30 @@
   </view>
 
 </view>
+
+<view class="cu-modal bottom-modal {{modalName=='ChooseRole'?'show':''}}">
+    <view class="cu-dialog">
+        <view class="cu-bar bg-white">
+            <view class="action">
+                <text class="icon-titles text-black"></text>
+                <text>Please select his or her team role</text>
+            </view>
+            <view class="action text-black" bindtap="hideModal">
+                <text class="icon-close "></text>
+            </view>
+        </view>
+        <view class="grid col-3 padding-sm bg-white">
+            <view wx:for="{{allRole}}" class="padding-xs" wx:key>
+                <view class="cu-btn round black block {{item === role ?'bg-black':'line-black'}}" bindtap="ChooseCheckbox" data-value="{{item}}">
+                    {{item}}
+                </view>
+            </view>
+        </view>
+        <view class="cu-bar bg-white">
+            <view class="action text-grey">{{team.id}}</view>
+            <view class="action text-black">
+                <button class="cu-btn bg-black  padding-lr-xl round" open-type="share" bindtap="hideModal">OK</button>
+            </view>
+        </view>
+    </view>
+</view>
