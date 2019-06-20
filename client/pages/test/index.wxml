@@ -1,5 +1,28 @@
-<navigationBar bgColor="bg-gradual-pink" isBack="{{true}}">
-  <view slot="backText">返回</view>
-  <view slot="content">{{team.name}}</view>
-</navigationBar>
-<view>{{storage}}</view>
+<view class='cu-custom'>
+    <view class="cu-bar fixed bg-shadeTop" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+        <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+            <text class='icon-back'></text>
+            返回
+        </navigator>
+        <view class='content' style='top:{{StatusBar}}px;'></view>
+    </view>
+</view>
+<view class="bg-img bg-mask padding-tb-xl" style="background-image: url('https://res.wx.qq.com/community/dist/images/home_img_miniprogarmdevelopmentguides_2x_22399a.png');height: 400rpx;">
+    <view class="padding-xl margin-top-xl text-white text-center">
+        <view class="padding-top-xl margin-top-sm text-xl">{{dataDetail.title}}</view>
+        <view class="padding-xs">{{dataDetail.description}}</view>
+    </view>
+</view>
+
+<view class='nav-list margin-top'>
+  <navigator hover-class='none' url="{{item.url}}" class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key>
+    <view class="nav-title">{{item.title}}</view>
+    <view class="nav-name">{{item.name}}</view>
+    <text class='icon-{{item.icon}}'></text>
+  </navigator>
+</view>
+<view class='margin-xl bg-white padding radius shadow-lg'>
+    <view class='text-content'>
+        <view>this is content</view>
+    </view>
+</view>

@@ -7,7 +7,7 @@ Page({
   },
   onLoad() {
     let list = [];
-    for (let i = 0; i < 26; i++) {
+    for (let i = 0; i < 6; i++) {
       list[i] = String.fromCharCode(65 + i)
     }
     this.setData({

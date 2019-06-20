@@ -1,7 +1,7 @@
 // pages/login/github.js
 const app = getApp();
 const { base64_encode } = require('../../utils/base64');
-const { oauthUrl, serverUrl} = require('../../config.js');
+const { oauthUrl, serverUrl, school_id_len} = require('../../config.js');
 Page({
   data: {
     pageConfig: {
@@ -75,10 +75,13 @@ Page({
               wx.setStorageSync('token', token);
               app.globalData.username = username;
 
+              const type = school_id_len[username.length];
+              // bind school_id as username to openid
               wx.request({
                 url: serverUrl + 'users/' + app.globalData.openid,
                 data: {
                   school_id: username,
+                  type
                 },
                 method: 'PUT',
                 dataType: 'json',

@@ -9,6 +9,6 @@
 </scroll-view>
 <view class='margin-xl bg-white padding-xl radius shadow-lg'>
     <view class='text-content'>
-        <view>{{description}}</view>
+      <wxparser rich-text="{{description}}" />
     </view>
 </view>

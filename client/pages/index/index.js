@@ -38,12 +38,6 @@ Page({
         url: "../source/index"
       },
       {
-        icon: "explorefill",
-        color: "cyan",
-        badge: 0,
-        name: "Seminars"
-      },
-      {
         icon: "upstagefill",
         color: "olive",
         badge: 0,
@@ -51,20 +45,28 @@ Page({
         url: "../competition/index"
       },
       {
-        icon: "lightfill",
-        color: "yellow",
-        badge: 0,
-        name: "Job"
-      },
-      {
         icon: "more",
         color: "mauve",
         badge: 0,
         name: "More",
         url: "../menu/all"
-      }
+      },
+      {
+        icon: "explorefill",
+        color: "cyan",
+        badge: 0,
+        name: "Seminars"
+      },
+
+      {
+        icon: "lightfill",
+        color: "yellow",
+        badge: 0,
+        name: "Job"
+      },
+
     ],
-    gridCol: 4,
+    gridCol: 3,
     menuItem: [
       {
         icon: "myfill",
@@ -91,14 +93,9 @@ Page({
     canIUse: wx.canIUse("button.open-type.getUserInfo"),
 
     day: date.getDate(),
-    month: date.getMonth(),
+    month: date.getMonth() + 1,
     year: date.getFullYear(),
-    weekday: weekday[date.getDay()],
-    week: 1,
-    district: "Weiyang District",
-    temprature: "",
-    weather: "sunny",
-    air: 120,
+
     advice: "wear coat",
 
     courseList: [
@@ -168,7 +165,29 @@ Page({
   },
   //事件处理函数
 
-  onLoad: function () { },
+  onLoad: function () { 
+    let that = this;
+    wx.request({
+      url: 'https://www.tianqiapi.com/api/',
+      data: {
+        version: 'v1',
+        city: '西安'
+      },
+      method: 'GET',
+      dataType: 'json',
+      success: function (res) {
+        console.log(res)
+        that.setData({
+          district: res.data.city,
+          temprature: res.data.data[0].tem,
+          weather: res.data.data[0].wea,
+          air: res.data.data[0].air_level,
+          advice: res.data.data[0].air_tips,
+          weekday: res.data.data[0].week
+        })
+      },
+    })
+  },
   showModal(e) {
     let that = this;
     that.setData({

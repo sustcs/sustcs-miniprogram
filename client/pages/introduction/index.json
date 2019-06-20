@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "wemark": "../../components/wemark/wemark",
+    "wxparser": "plugin://wxparserPlugin/wxparser",
     "navigationBar": "../../components/colorui/cu-custom"
   }
 }

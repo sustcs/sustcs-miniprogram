@@ -88,7 +88,7 @@
         <view class="padding-lr text-center text-xsl text-black">{{day}}</view>
         <view>
           <view class="grid col-1 ">
-            <view class="align-center padding-sm">{{weekday}}【Week {{week}}】</view>
+            <view class="align-center padding-sm">{{weekday}}</view>
           </view>
           <view class="grid col-1 ">
             <view class="align-center padding-sm">{{month}}/{{year}}</view>
@@ -98,7 +98,7 @@
       <view class="grid col-1 ">
         <view class="align-center padding-xs padding-lr">
           <text class='icon-locationfill text-blue '></text>
-          {{district}}:{{temprature}}°C  air quality:{{air}}
+          {{district}}:{{temprature}}  空气质量:{{air}}
         </view>
       </view>
       <view class="grid col-1 ">
@@ -107,7 +107,7 @@
     </view>
     <view class='flex-sub padding-xs'>
       <view class="grid col-1  grid-square">
-        <view class="bg-img align-center " style="background-image:url(https://sustcs-cdn.makergyt.com/sust-scene-2.jpg);"></view>
+        <view class="bg-img align-center " style="background-image:url(http://news.www.sust.edu.cn/_mediafile/news/2017/03/13/34utmsy913.jpg);"></view>
       </view>
     </view>
   </view>

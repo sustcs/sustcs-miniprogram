@@ -47,7 +47,10 @@ Page({
         target: 'admin',
         payload: {
           statusCode: 1,
-          msg: userInfo,
+          msg: {
+            ...userInfo,
+            username: app.globalData.username
+          },
         },
       });
       setTimeout(function () {

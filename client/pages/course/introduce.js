@@ -1,62 +1,27 @@
-//index.js
-//获取应用实例
 const app = getApp();
-
+const { basic_url, repo_full_name, canFileType } = require('../../config');
 Page({
-    data: {
-        TabCur: 0,
-        scrollLeft: 0,
-        allItem: [
-            {
-                id: 0,
-                name: "Course orientation",
-                content: "this is the Course orientation"
-            },
-            {
-                id: 1,
-                name: "The teaching goal",
-                content: "this is the teaching goal"
-            },
-            {
-                id: 2,
-                name: "Graduation requirements"
-            },
-            {
-                id: 3,
-                name: "Basic teaching content"
-            },
-            {
-                id: 4,
-                name: "The teaching method"
-            },
-            {
-                id: 5,
-                name: "evaluation mode"
-            },
-            {
-                id: 6,
-                name: "Improvement mechanisms"
-            }
-        ]
-
-
+  data: {
+    StatusBar: app.globalData.StatusBar,
+    CustomBar: app.globalData.CustomBar,
+    Custom: app.globalData.Custom,
+    scroll: 0,
+    dataDetail: {
+      title: '计算机科学与技术'
     },
-    onLoad: function () { },
-    tabSelect(e) {
-        console.log(e);
-        this.setData({
-            TabCur: e.currentTarget.dataset.id,
-            scrollLeft: (e.currentTarget.dataset.id - 1) * 60
-        });
-    },
-    onShareAppMessage(res) {
-        if (res.from === 'button') {
-            // 来自页面内转发按钮
-            console.log(res.target)
+    elements: [
+      { title: '资料', name: 'Source', color: 'purple', icon: 'vipcard', url: '../source/content?repo=sustcs/course' },
+      { title: '评论 ', name: 'Comment', color: 'mauve', icon: 'formfill', url: 'review' },
+    ],
+  },
+  onLoad: function (options) {
+    wx.getSystemInfo({
+      success: e => {
+        //适配全面屏底部距离
+        if (app.globalData.CustomBar > 75) {
+          this.globalData.tabbar_bottom = "y"
         }
-        return {
-            title: '自定义转发标题',
-            path: '/page/user?id=123'
-        }
-    }
+      }
+    })
+  },
 });

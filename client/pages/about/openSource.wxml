@@ -24,3 +24,9 @@
     <view class='padding'>https://github.com/TooBug/wemark</view>
   </view>
 </view>
+<view class='padding text-center'>
+  <view class='padding-lr bg-white' bindtap='CopyLink' data-link='https://github.com/weilanwl/ColorUI'>
+    <view class='solid-bottom padding'>wxParser</view>
+    <view class='padding'>https://github.com/ifanrx/wxParser</view>
+  </view>
+</view>

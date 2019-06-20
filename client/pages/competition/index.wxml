@@ -10,10 +10,6 @@
         <text class="icon-search"></text>
         <input type="text" placeholder="" confirm-type="search"></input>
     </view>
-    <view class="action text-white">
-        <text>Filter</text>
-        <text class="icon-triangledownfill"></text>
-    </view>
 </view>
 <scroll-view scroll-y class="scrollPage">
     <view class="cu-card">

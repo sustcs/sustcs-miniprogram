@@ -11,5 +11,10 @@ module.exports = {
     domainPrefix: ["http://localhost:8000/"],
     Bucket: 'wechat-1256701454',
     Region: 'ap-chengdu',
-    canFileType: ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf']
+    canFileType: ['doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'pdf'],
+
+    school_id_len: {
+      '4': 'teacher',
+      '12': 'student'
+    }
 }

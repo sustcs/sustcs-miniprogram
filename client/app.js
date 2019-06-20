@@ -24,7 +24,6 @@ App({
     wx.cloud.callFunction({
       name: 'user',
       complete: res => {
-        console.log(res)
         if (res.errMsg === 'cloud.callFunction:ok' && res.result !== null) {
           this.register(res.result.openid);
           
