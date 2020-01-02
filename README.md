@@ -24,7 +24,7 @@ domainPrefix: ["http://localhost:8000/"], // admin domain
 # Screenshot
 |Home|Menu|Course|Course Review|Competition|Competition Detail|
 |--|--|--|--|--|--|
-|![](https://blog-cdn.makergyt.com/sustcs-miniprogram-Picture1.png)|![](https://blog-cdn.makergyt.com/sustcs-miniprogram-Picture2.png)|![](https://blog-cdn.makergyt.com/sustcs-miniprogram-Picture3.png)|![](https://blog-cdn.makergyt.com/sustcs-miniprogram-Picture4.png)|![](https://blog-cdn.makergyt.com/sustcs-miniprogram-Picture5.png)|![](https://blog-cdn.makergyt.com/sustcs-miniprogram-Picture6.png)|
+|![](https://raw.githubusercontent.com/sustcs/sustcs-miniprogram/master/sustcs-miniprogram-Picture1.png)|![](https://raw.githubusercontent.com/sustcs/sustcs-miniprogram/master/sustcs-miniprogram-Picture2.png)|![](https://raw.githubusercontent.com/sustcs/sustcs-miniprogram/master/sustcs-miniprogram-Picture3.png)|![](https://raw.githubusercontent.com/sustcs/sustcs-miniprogram/master/sustcs-miniprogram-Picture4.png)|![](https://raw.githubusercontent.com/sustcs/sustcs-miniprogram/master/sustcs-miniprogram-Picture5.png)|![](https://raw.githubusercontent.com/sustcs/sustcs-miniprogram/master/sustcs-miniprogram-Picture6.png)|
 # Finished
 - [ ] introduction
 - [ ] team chat
